@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estêvão Souza · Fotógrafo e Videomaker</title>
+  <meta name="description" content="Estêvão Souza fotografa e filma artistas: direção, edição e finalização de videoclipes e curtas. Da primeira ideia ao corte final, com olhar cinematográfico." />
+  <meta property="og:title" content="Estêvão Souza · Fotógrafo e Videomaker" />
+  <meta property="og:description" content="Filmes e videoclipes para artistas, com olhar cinematográfico. Direção, edição, color e som." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0a0a0b" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%230a0a0b'/%3E%3Crect x='9' y='9' width='6' height='6' fill='%23e0a531'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#trabalhos">Pular para os trabalhos</a>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="#top" aria-label="Início">
+        <span class="nav__mark" aria-hidden="true"></span>
+        <span class="nav__wordmark">Estêvão Souza</span>
+      </a>
+
+      <nav class="nav__links" aria-label="Navegação principal">
+        <a href="#reel">Reel</a>
+        <a href="#trabalhos">Trabalhos</a>
+        <a href="#series">Séries</a>
+        <a href="#frames">Frames</a>
+        <a href="#fazer">Serviços</a>
+        <a href="#sobre">Sobre</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a href="#contato" class="btn btn--accent btn--sm">Iniciar um projeto</a>
+        <button class="nav__menu" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="nav__mobile" id="mobileMenu" hidden>
+      <a href="#reel">Reel</a>
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#series">Séries</a>
+      <a href="#frames">Frames</a>
+      <a href="#fazer">Serviços</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato" class="btn btn--accent">Iniciar um projeto</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero__media">
+        <!-- TODO: quando tiver o reel, trocar esta imagem por um <video> de fundo -->
+        <img class="hero__video" src="images/web/dolomitas-02.jpg" alt="Paisagem das Dolomitas, Itália" />
+        <div class="hero__scrim" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero__content reveal">
+        <ul class="disciplines">
+          <li>Fotografia</li><li>Direção</li><li>Edição</li><li>Cor</li><li>Documentário</li><li>Videoclipe</li>
+        </ul>
+        <h1 class="hero__title">
+          Imagens que ficam<br />na memória.
+        </h1>
+        <p class="hero__sub">
+          Filmes e videoclipes com olhar cinematográfico.
+          Da primeira ideia ao corte final.
+        </p>
+        <div class="hero__cta">
+          <a href="#reel" class="btn btn--accent">Ver o reel</a>
+          <a href="#trabalhos" class="btn btn--ghost">Trabalhos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REEL (featured media + text) ============ -->
+    <section class="reel" id="reel">
+      <div class="reel__text reveal">
+        <h2 class="section-title">Reel 2026</h2>
+        <p class="lede">
+          Um corte de dois minutos com o que define o meu trabalho:
+          ritmo, luz e uma história que se sustenta sem legenda.
+        </p>
+        <a href="#contato" class="link-arrow">Pedir o reel completo</a>
+      </div>
+
+      <figure class="reel__frame reveal" data-player>
+        <!-- TODO: trocar pelo arquivo do reel principal -->
+        <video
+          class="reel__video"
+          muted loop playsinline preload="none"
+          poster="https://picsum.photos/seed/estevao-reel-frame/1600/900">
+          <source src="https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4" type="video/mp4" />
+        </video>
+        <button class="play" type="button" aria-label="Reproduzir reel">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        </button>
+      </figure>
+    </section>
+
+    <!-- ============ TRABALHOS (asymmetric gallery grid) ============ -->
+    <section class="works" id="trabalhos">
+      <div class="works__head">
+        <span class="eyebrow">Trabalhos selecionados</span>
+        <h2 class="section-title">Projetos recentes</h2>
+      </div>
+
+      <div class="works__grid">
+        <button class="work work--wide reveal" type="button" data-full="https://picsum.photos/seed/litoral-film/1920/1280" data-cap="Litoral · Curta-metragem, Bahia 2025">
+          <div class="work__img"><img loading="lazy" src="https://picsum.photos/seed/litoral-film/1400/900" alt="Still do curta-metragem Litoral" /><video class="card-vid" data-src="https://res.cloudinary.com/demo/video/upload/elephants.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="work__meta">
+            <h3 class="work__title">Litoral</h3>
+            <span class="work__tag">Curta-metragem, Bahia 2025</span>
+          </div>
+        </button>
+
+        <button class="work work--tall reveal" type="button" data-full="https://picsum.photos/seed/mare-alta-clip/1280/1800" data-cap="Maré Alta · Videoclipe, Recife 2025">
+          <div class="work__img"><img loading="lazy" src="https://picsum.photos/seed/mare-alta-clip/900/1300" alt="Frame do videoclipe Maré Alta" /><video class="card-vid" data-src="https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="work__meta">
+            <h3 class="work__title">Maré Alta</h3>
+            <span class="work__tag">Videoclipe, Recife 2025</span>
+          </div>
+        </button>
+
+        <button class="work reveal" type="button" data-full="https://picsum.photos/seed/concreto-doc/1600/1600" data-cap="Concreto · Documental, São Paulo 2024">
+          <div class="work__img"><img loading="lazy" src="https://picsum.photos/seed/concreto-doc/900/900" alt="Cena do documental Concreto" /><video class="card-vid" data-src="https://res.cloudinary.com/demo/video/upload/dog.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="work__meta">
+            <h3 class="work__title">Concreto</h3>
+            <span class="work__tag">Documental, São Paulo 2024</span>
+          </div>
+        </button>
+
+        <button class="work reveal" type="button" data-full="https://picsum.photos/seed/primeira-luz-ad/1600/1600" data-cap="Primeira Luz · Registro de show, Rio 2024">
+          <div class="work__img"><img loading="lazy" src="https://picsum.photos/seed/primeira-luz-ad/900/900" alt="Frame do registro de show Primeira Luz" /><video class="card-vid" data-src="https://videos.pexels.com/video-files/1093662/1093662-hd_1920_1080_30fps.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="work__meta">
+            <h3 class="work__title">Primeira Luz</h3>
+            <span class="work__tag">Registro de show, Rio 2024</span>
+          </div>
+        </button>
+
+        <button class="work work--full reveal" type="button" data-full="https://picsum.photos/seed/ruido-branco-mv/1920/900" data-cap="Ruído Branco · Videoclipe, Lisboa 2023">
+          <div class="work__img"><img loading="lazy" src="https://picsum.photos/seed/ruido-branco-mv/1600/720" alt="Still do videoclipe Ruído Branco" /><video class="card-vid" data-src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="work__meta">
+            <h3 class="work__title">Ruído Branco</h3>
+            <span class="work__tag">Videoclipe, Lisboa 2023</span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ SÉRIES (carrossel horizontal scroll-snap) ============ -->
+    <section class="series" id="series" data-carousel>
+      <div class="series__head">
+        <div>
+          <h2 class="section-title">Séries</h2>
+          <p class="series__note">Coleções de fotografia por tema. Clique para abrir a galeria.</p>
+        </div>
+        <div class="series__nav">
+          <button class="series__btn" type="button" data-prev aria-label="Anterior">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M15 5 8 12l7 7-1.5 1.5L5 12l8.5-8.5z"/></svg>
+          </button>
+          <button class="series__btn" type="button" data-next aria-label="Próximo">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M9 5l7 7-7 7-1.5-1.5L13 12 7.5 6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="series__track">
+        <button class="serie reveal" type="button" data-gallery="grutas">
+          <div class="serie__img"><img loading="lazy" src="images/web/gruta-maquine-01-t.jpg" alt="Série Grutas" /></div>
+          <div class="serie__meta"><h3 class="serie__title">Grutas</h3><span class="serie__count">7 fotos</span></div>
+        </button>
+        <button class="serie reveal" type="button" data-gallery="montanhas">
+          <div class="serie__img"><img loading="lazy" src="images/web/insbruck-pico-t.jpg" alt="Série Montanhas" /></div>
+          <div class="serie__meta"><h3 class="serie__title">Montanhas</h3><span class="serie__count">11 fotos</span></div>
+        </button>
+        <button class="serie reveal" type="button" data-gallery="fortezza">
+          <div class="serie__img"><img loading="lazy" src="images/web/fortezza-09-t.jpg" alt="Série Forte di Fortezza" /></div>
+          <div class="serie__meta"><h3 class="serie__title">Forte di Fortezza</h3><span class="serie__count">25 fotos</span></div>
+        </button>
+        <button class="serie reveal" type="button" data-gallery="insbruck">
+          <div class="serie__img"><img loading="lazy" src="images/web/insbruck-06-t.jpg" alt="Série Innsbruck" /></div>
+          <div class="serie__meta"><h3 class="serie__title">Innsbruck</h3><span class="serie__count">11 fotos</span></div>
+        </button>
+        <button class="serie reveal" type="button" data-gallery="milao">
+          <div class="serie__img"><img loading="lazy" src="images/web/milao-05-t.jpg" alt="Série Milão" /></div>
+          <div class="serie__meta"><h3 class="serie__title">Milão</h3><span class="serie__count">13 fotos</span></div>
+        </button>
+        <button class="serie reveal" type="button" data-gallery="munique">
+          <div class="serie__img"><img loading="lazy" src="images/web/munique-02-t.jpg" alt="Série Munique" /></div>
+          <div class="serie__meta"><h3 class="serie__title">Munique</h3><span class="serie__count">23 fotos</span></div>
+        </button>
+        <button class="serie reveal" type="button" data-gallery="veneza">
+          <div class="serie__img"><img loading="lazy" src="images/web/veneza-13-t.jpg" alt="Série Veneza" /></div>
+          <div class="serie__meta"><h3 class="serie__title">Veneza</h3><span class="serie__count">14 fotos</span></div>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ FRAMES (galeria densa, lightbox) ============ -->
+    <section class="frames" id="frames">
+      <div class="frames__head">
+        <h2 class="section-title">Frames</h2>
+        <p class="frames__note">Recortes soltos de viagens, grutas e cidades.</p>
+      </div>
+      <div class="frames__grid">
+        <button class="frame reveal" type="button" data-full="images/web/gruta-lapinha-01.jpg" data-cap="Gruta da Lapinha, Serra do Cipó">
+          <div class="frame__img"><img loading="lazy" src="images/web/gruta-lapinha-01-t.jpg" alt="Formação rochosa iluminada na Gruta da Lapinha" /></div>
+        </button>
+        <button class="frame reveal" type="button" data-full="images/web/munique-02.jpg" data-cap="Munique">
+          <div class="frame__img"><img loading="lazy" src="images/web/munique-02-t.jpg" alt="Figura solitária em corredor de concreto, Munique" /></div>
+        </button>
+        <button class="frame reveal" type="button" data-full="images/web/itatiaia-arco.jpg" data-cap="Parque Nacional do Itatiaia">
+          <div class="frame__img"><img loading="lazy" src="images/web/itatiaia-arco-t.jpg" alt="Arco natural de pedra no Itatiaia" /></div>
+        </button>
+        <button class="frame reveal" type="button" data-full="images/web/munique-06.jpg" data-cap="Munique">
+          <div class="frame__img"><img loading="lazy" src="images/web/munique-06-t.jpg" alt="Plataforma de metrô vazia em Munique" /></div>
+        </button>
+        <button class="frame reveal" type="button" data-full="images/web/munique-15.jpg" data-cap="Munique">
+          <div class="frame__img"><img loading="lazy" src="images/web/munique-15-t.jpg" alt="Arco coberto de hera vermelha, Munique" /></div>
+        </button>
+        <button class="frame reveal" type="button" data-full="images/web/gruta-rei-do-mato-01.jpg" data-cap="Gruta Rei do Mato, Sete Lagoas">
+          <div class="frame__img"><img loading="lazy" src="images/web/gruta-rei-do-mato-01-t.jpg" alt="Colunas de pedra na Gruta Rei do Mato" /></div>
+        </button>
+        <button class="frame reveal" type="button" data-full="images/web/milao-02.jpg" data-cap="Duomo di Milano">
+          <div class="frame__img"><img loading="lazy" src="images/web/milao-02-t.jpg" alt="Fachada do Duomo de Milão na luz dourada" /></div>
+        </button>
+        <button class="frame reveal" type="button" data-full="images/web/veneza-13.jpg" data-cap="Veneza">
+          <div class="frame__img"><img loading="lazy" src="images/web/veneza-13-t.jpg" alt="Canal de Veneza ao entardecer" /></div>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ SERVIÇOS (hairline index list) ============ -->
+    <section class="fazer" id="fazer">
+      <h2 class="section-title fazer__title">Do roteiro ao master final</h2>
+      <ul class="rows">
+        <li class="row reveal">
+          <span class="row__name">Direção</span>
+          <span class="row__desc">Conceito, decupagem e condução de set para filme e clipe.</span>
+        </li>
+        <li class="row reveal">
+          <span class="row__name">Edição e montagem</span>
+          <span class="row__desc">Ritmo e narrativa construídos a partir do material bruto.</span>
+        </li>
+        <li class="row reveal">
+          <span class="row__name">Color grading</span>
+          <span class="row__desc">Tratamento de cor e look cinematográfico em DaVinci Resolve.</span>
+        </li>
+        <li class="row reveal">
+          <span class="row__name">Som e mixagem</span>
+          <span class="row__desc">Desenho sonoro, trilha e mixagem para entrega final.</span>
+        </li>
+        <li class="row reveal">
+          <span class="row__name">Finalização</span>
+          <span class="row__desc">Gráficos, créditos e masters nos formatos de cada canal.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ SOBRE (stacked editorial + portrait) ============ -->
+    <section class="about" id="sobre">
+      <div class="about__portrait reveal">
+        <img loading="lazy" src="https://picsum.photos/seed/estevao-portrait-bw/900/1100" alt="Retrato de Estêvão Souza" />
+      </div>
+      <div class="about__text reveal">
+        <h2 class="section-title">Sobre</h2>
+        <p>
+          Sou Estêvão Souza, fotógrafo e videomaker baseado no Brasil. Trabalho com
+          artistas que querem mais do que um vídeo bonito: querem uma história bem contada.
+        </p>
+        <p>
+          Cuido do processo inteiro ou entro num ponto específico da cadeia.
+          O importante é que cada corte tenha intenção.
+        </p>
+        <p class="about__since"><strong id="yearsActive">8</strong> anos filmando, desde 2018.</p>
+      </div>
+    </section>
+
+    <!-- ============ VIMEO (convite para o canal) ============ -->
+    <section class="vimeo-cta" aria-label="Vimeo">
+      <div class="vimeo-cta__inner">
+        <img class="vimeo-cta__icon" src="https://cdn.simpleicons.org/vimeo/e0a531" alt="" width="32" height="32" />
+        <p class="vimeo-cta__text">Filmes completos e cortes, publicados no Vimeo.</p>
+        <a href="#" data-placeholder target="_blank" rel="noopener noreferrer" class="link-arrow">Seguir no Vimeo</a>
+      </div>
+    </section>
+
+    <!-- ============ CONTATO ============ -->
+    <section class="contact" id="contato">
+      <div class="contact__inner reveal">
+        <h2 class="contact__title">Vamos criar algo.</h2>
+        <p class="contact__sub">Conte a ideia. Eu respondo com um caminho para tirá-la do papel.</p>
+        <div class="contact__actions">
+          <a href="mailto:estevaosouza2804@gmail.com" class="btn btn--accent btn--lg">estevaosouza2804@gmail.com</a>
+          <button class="copy-btn" type="button" data-copy-email="estevaosouza2804@gmail.com" aria-label="Copiar e-mail">
+            <svg class="copy-btn__icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m0 16H8V7h11z"/></svg>
+            <svg class="copy-btn__check" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+          </button>
+        </div>
+        <p class="copy-btn__status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+    <button class="lightbox__close" type="button" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12 19 6.4 17.6 5 12 10.6z"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__prev" type="button" aria-label="Foto anterior" hidden>
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M15 5 8 12l7 7-1.5 1.5L5 12l8.5-8.5z"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__next" type="button" aria-label="Próxima foto" hidden>
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M9 5l7 7-7 7-1.5-1.5L13 12 7.5 6.5z"/></svg>
+    </button>
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" alt="" />
+      <figcaption class="lightbox__cap"></figcaption>
+    </figure>
+    <span class="lightbox__counter" aria-hidden="true"></span>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__brand">Estêvão Souza</span>
+      <nav class="footer__social" aria-label="Redes sociais">
+        <a href="#" data-placeholder target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="https://cdn.simpleicons.org/instagram/9a9a98" alt="" width="20" height="20" /></a>
+        <a href="#" data-placeholder target="_blank" rel="noopener noreferrer" aria-label="Vimeo"><img src="https://cdn.simpleicons.org/vimeo/9a9a98" alt="" width="20" height="20" /></a>
+        <a href="#" data-placeholder target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="https://cdn.simpleicons.org/youtube/9a9a98" alt="" width="20" height="20" /></a>
+      </nav>
+      <span class="footer__copy">© 2026 Estêvão Souza</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
