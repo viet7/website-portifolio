@@ -1,0 +1,88 @@
+{
+  "cliente": "NOME DO CLIENTE",
+  "projeto": "Conteúdo mensal em vídeo e foto",
+  "data": "2026-07-12",
+  "validade": "2026-07-27",
+  "intro": "Oi, NOME! Este é o plano de conteúdo recorrente: eu capto e entrego todo mês, você mantém as redes vivas sem se preocupar com produção. Três intensidades, todas com captação profissional e edição no meu padrão.",
+  "sufixoPreco": "/mês",
+  "opcoes": [
+    {
+      "id": "essencial",
+      "nome": "Essencial",
+      "preco": 1200,
+      "resumo": "Presença constante com uma captação mensal.",
+      "itens": [
+        "1 diária de captação por mês",
+        "8 entregas editadas (reels, fotos ou combinações)",
+        "Pauta de captação alinhada no início do mês",
+        "Entregas ao longo do mês, prontas para postar"
+      ],
+      "recomendado": false
+    },
+    {
+      "id": "completo",
+      "nome": "Completo",
+      "preco": 1800,
+      "resumo": "Volume para alimentar o perfil a semana inteira.",
+      "itens": [
+        "1 diária de captação por mês",
+        "12 entregas editadas (reels, fotos ou combinações)",
+        "Calendário de conteúdo do mês desenhado junto",
+        "Cobertura de 1 ação ou evento pequeno incluída",
+        "Entregas semanais, prontas para postar"
+      ],
+      "recomendado": true
+    },
+    {
+      "id": "premium",
+      "nome": "Premium",
+      "preco": 2500,
+      "resumo": "Duas captações mensais e prioridade de agenda.",
+      "itens": [
+        "2 diárias de captação por mês",
+        "16 entregas editadas (reels, fotos ou combinações)",
+        "Calendário de conteúdo do mês desenhado junto",
+        "Prioridade de agenda para demandas de última hora",
+        "Entregas semanais, prontas para postar"
+      ],
+      "recomendado": false
+    }
+  ],
+  "adicionais": [
+    {
+      "id": "exclusividade-segmento",
+      "nome": "Exclusividade de segmento",
+      "desc": "Não atendo concorrentes diretos do seu segmento enquanto o contrato durar.",
+      "tipo": "percentual",
+      "valor": 20
+    },
+    {
+      "id": "diaria-extra",
+      "nome": "Diária extra de captação",
+      "desc": "Captação adicional dentro do mês (lançamento, evento, campanha).",
+      "tipo": "fixo",
+      "valor": 800
+    },
+    {
+      "id": "entregas-extras",
+      "nome": "4 entregas extras no mês",
+      "desc": "Pacote adicional de reels/fotos editados a partir do material captado.",
+      "tipo": "fixo",
+      "valor": 400
+    }
+  ],
+  "naoIncluso": [
+    "Postagem, legendas e gestão das redes (entrego o material pronto)",
+    "Impulsionamento e mídia paga",
+    "Deslocamento para fora de BH e Contagem (combinado por km)",
+    "Locações pagas, figurino e produção de arte"
+  ],
+  "condicoes": [
+    "Fidelidade mínima de 3 meses; depois, cancelamento livre com 30 dias de aviso",
+    "Pagamento mensal via Pix ou cartão, até o dia 5",
+    "1 rodada de ajustes por entrega; ajustes extras orçados à parte",
+    "Entregas não usadas no mês não acumulam para o mês seguinte",
+    "Reajuste anual pelo IPCA em contratos acima de 12 meses"
+  ],
+  "email": "estevaosouza2804@gmail.com"
+}

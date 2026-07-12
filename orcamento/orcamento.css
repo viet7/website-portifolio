@@ -1,0 +1,197 @@
+/* =========================================================
+   Orçamento exclusivo por cliente
+   Reusa os tokens de styles.css (dark, âmbar, cantos retos).
+   ========================================================= */
+
+.orc-nav { position: sticky; }
+
+.orc {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vh, 5rem) var(--gut) 9rem; /* respiro para a barra fixa */
+}
+
+/* ---- Estados (carregando / não encontrada / expirada) ---- */
+.orc-state { padding: 18vh 0; text-align: center; }
+.orc-state__msg { color: var(--text-dim); font-size: 1.05rem; max-width: 46ch; margin: 0 auto 1.2rem; }
+.orc-state .link-arrow { justify-content: center; }
+
+/* ---- Cabeçalho da proposta ---- */
+.orc-head { margin-bottom: clamp(2rem, 5vh, 3rem); }
+.orc-head .eyebrow { margin-bottom: 1rem; }
+.orc-head__title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  letter-spacing: -0.035em; line-height: 1.02;
+}
+.orc-head__client { color: var(--accent); }
+.orc-meta {
+  display: flex; flex-wrap: wrap; gap: .5rem 2.2rem;
+  margin-top: 1.6rem; padding-top: 1.2rem;
+  border-top: 1px solid var(--line-soft);
+}
+.orc-meta__item { display: flex; flex-direction: column; gap: .15rem; }
+.orc-meta__key {
+  font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--text-mute); font-weight: 600;
+}
+.orc-meta__val { font-family: var(--font-display); font-weight: 500; font-size: .95rem; }
+
+.orc-intro { color: var(--text-dim); font-size: 1.08rem; max-width: 62ch; margin-bottom: clamp(2.5rem, 6vh, 4rem); }
+
+/* aviso de proposta expirada */
+.orc-expired {
+  border: 1px solid var(--accent); padding: 1rem 1.25rem;
+  color: var(--text); margin-bottom: 2rem; font-size: .95rem;
+}
+
+/* ---- Seções ---- */
+.orc-section { margin-bottom: clamp(2.8rem, 7vh, 4.5rem); }
+.orc-section__title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: -0.02em;
+  margin-bottom: .5rem;
+}
+.orc-section__note { color: var(--text-mute); font-size: .92rem; margin-bottom: 1.6rem; max-width: 60ch; }
+
+/* ---- Opções (tiers) ---- */
+.orc-tiers {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(.9rem, 2vw, 1.4rem);
+}
+.orc-tiers[data-count="1"] { grid-template-columns: minmax(0, 480px); }
+.orc-tiers[data-count="2"] { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 860px) { .orc-tiers, .orc-tiers[data-count="2"] { grid-template-columns: 1fr; } }
+
+.tier { position: relative; }
+.tier__input { position: absolute; opacity: 0; pointer-events: none; }
+.tier__card {
+  position: relative; display: flex; flex-direction: column; gap: 1.1rem;
+  height: 100%; padding: 1.6rem 1.4rem 1.5rem;
+  background: var(--bg-elev); border: 1px solid var(--line);
+  cursor: pointer;
+  transition: border-color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease);
+}
+.tier__card:hover { border-color: var(--text-mute); }
+.tier__input:focus-visible + .tier__card { outline: 2px solid var(--accent); outline-offset: 3px; }
+.tier__input:checked + .tier__card { border-color: var(--accent); background: var(--surface); }
+
+/* cantos de mira na opção escolhida — mesma assinatura visual do site */
+.tier__card::after {
+  content: ""; position: absolute; inset: 8px; pointer-events: none;
+  opacity: 0; transform: scale(1.04);
+  transition: opacity .35s var(--ease), transform .35s var(--ease);
+  background:
+    linear-gradient(var(--accent), var(--accent)) top    left  / 16px 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top    left  / 2px 16px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top    right / 16px 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top    right / 2px 16px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom left  / 16px 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom left  / 2px 16px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom right / 16px 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom right / 2px 16px no-repeat;
+}
+.tier__input:checked + .tier__card::after { opacity: 1; transform: scale(1); }
+
+.tier__head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+.tier__name {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.05rem; letter-spacing: .02em; text-transform: uppercase;
+}
+.tier__badge {
+  font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 600;
+  color: var(--on-accent); background: var(--accent); padding: .25rem .5rem;
+  white-space: nowrap;
+}
+.tier__price {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.7rem, 3.2vw, 2.1rem); letter-spacing: -0.02em;
+}
+.tier__price small { font-size: .55em; font-weight: 500; color: var(--text-dim); letter-spacing: 0; }
+.tier__summary { color: var(--text-dim); font-size: .92rem; min-height: 2.7em; }
+.tier__items { display: flex; flex-direction: column; gap: .55rem; border-top: 1px solid var(--line-soft); padding-top: 1.1rem; }
+.tier__items li {
+  position: relative; padding-left: 1.15rem;
+  color: var(--text-dim); font-size: .9rem; line-height: 1.45;
+}
+.tier__items li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+.tier__pick {
+  margin-top: auto; padding-top: 1.1rem;
+  font-family: var(--font-display); font-weight: 700; font-size: .82rem;
+  letter-spacing: .04em; color: var(--text-mute);
+  transition: color .25s var(--ease);
+}
+.tier__input:checked + .tier__card .tier__pick { color: var(--accent); }
+
+/* ---- Adicionais ---- */
+.addon {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.1rem .25rem;
+  border-top: 1px solid var(--line);
+  cursor: pointer;
+  transition: padding-left .3s var(--ease);
+}
+.addon:last-child { border-bottom: 1px solid var(--line); }
+.addon:hover { padding-left: .75rem; }
+.addon__input { position: absolute; opacity: 0; pointer-events: none; }
+.addon__box {
+  flex: 0 0 auto; width: 20px; height: 20px; margin-top: .2rem;
+  border: 1px solid var(--line); display: grid; place-items: center;
+  transition: border-color .25s var(--ease), background .25s var(--ease);
+}
+.addon__box svg { opacity: 0; transition: opacity .2s var(--ease); }
+.addon__input:checked ~ .addon__box { background: var(--accent); border-color: var(--accent); }
+.addon__input:checked ~ .addon__box svg { opacity: 1; }
+.addon__input:focus-visible ~ .addon__box { outline: 2px solid var(--accent); outline-offset: 3px; }
+.addon__body { flex: 1; display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem 1rem; }
+.addon__name { font-family: var(--font-display); font-weight: 700; font-size: 1rem; }
+.addon__price { font-family: var(--font-display); font-weight: 500; color: var(--accent); font-size: .95rem; margin-left: auto; white-space: nowrap; }
+.addon__desc { flex-basis: 100%; color: var(--text-mute); font-size: .88rem; }
+
+/* ---- O que não está incluso + condições ---- */
+.orc-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); }
+@media (max-width: 720px) { .orc-cols { grid-template-columns: 1fr; } }
+.orc-list { display: flex; flex-direction: column; gap: .6rem; }
+.orc-list li {
+  position: relative; padding-left: 1.15rem;
+  color: var(--text-dim); font-size: .93rem; line-height: 1.5;
+}
+.orc-list--out li::before { content: "×"; position: absolute; left: 0; color: var(--text-mute); font-weight: 600; }
+.orc-list--terms li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+
+/* ---- Barra de resumo fixa ---- */
+.orc-bar {
+  position: fixed; inset: auto 0 0 0; z-index: 90;
+  background: rgba(10, 10, 11, .92); backdrop-filter: blur(8px);
+  border-top: 1px solid var(--line);
+}
+.orc-bar__inner {
+  max-width: 1080px; margin: 0 auto; padding: .85rem var(--gut);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.orc-bar__label {
+  display: block; font-size: .64rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--text-mute); font-weight: 600;
+}
+.orc-bar__value {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem); letter-spacing: -0.02em;
+}
+.orc-bar__value small { font-size: .55em; font-weight: 500; color: var(--text-dim); }
+.orc-bar__actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+.orc-bar__status {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---- Impressão: a proposta vira um documento limpo ---- */
+@media print {
+  .orc-nav, .orc-bar, .tier__pick, .orc-footer { display: none !important; }
+  body { background: #fff; color: #111; }
+  .orc { padding-bottom: 2rem; }
+  .tier__card, .orc-expired { border-color: #bbb; background: #fff; }
+  .orc-head__client, .tier__items li::before, .orc-list--terms li::before, .addon__price { color: #8a6410; }
+  .orc-intro, .tier__summary, .tier__items li, .orc-list li, .addon__desc, .orc-section__note { color: #333; }
+  .orc-meta__key, .addon__desc, .orc-list--out li::before { color: #666; }
+  .tier__badge { background: #8a6410; color: #fff; }
+}

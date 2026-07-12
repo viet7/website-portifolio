@@ -1,0 +1,88 @@
+{
+  "cliente": "NOME DO CLIENTE",
+  "projeto": "Ensaio fotográfico",
+  "data": "2026-07-12",
+  "validade": "2026-07-27",
+  "intro": "Oi, NOME! Preparei três formatos para o seu ensaio. Todos incluem direção de pose, seleção e tratamento das fotos, com entrega digital em galeria privada.",
+  "sufixoPreco": "",
+  "opcoes": [
+    {
+      "id": "essencial",
+      "nome": "Essencial",
+      "preco": 350,
+      "resumo": "O ensaio direto ao ponto, em uma locação.",
+      "itens": [
+        "1h de sessão em 1 locação",
+        "20 fotos tratadas em alta resolução",
+        "Galeria digital privada para escolha",
+        "Entrega em até 7 dias úteis"
+      ],
+      "recomendado": false
+    },
+    {
+      "id": "completo",
+      "nome": "Completo",
+      "preco": 550,
+      "resumo": "Mais tempo, mais looks e mais fotos.",
+      "itens": [
+        "2h de sessão em até 2 locações",
+        "40 fotos tratadas em alta resolução",
+        "Troca de looks e direção de pose",
+        "Galeria digital privada para escolha",
+        "Entrega em até 10 dias úteis"
+      ],
+      "recomendado": true
+    },
+    {
+      "id": "premium",
+      "nome": "Premium",
+      "preco": 700,
+      "resumo": "Ensaio estendido com vídeo de bastidor.",
+      "itens": [
+        "3h de sessão, locações livres em BH",
+        "60 fotos tratadas + 5 retratos com edição fine art",
+        "Vídeo vertical de 30s dos bastidores",
+        "Galeria digital privada para escolha",
+        "Entrega em até 12 dias úteis"
+      ],
+      "recomendado": false
+    }
+  ],
+  "adicionais": [
+    {
+      "id": "fotos-extras",
+      "nome": "Pacote de 10 fotos extras",
+      "desc": "Além das inclusas no formato escolhido, tratadas no mesmo padrão.",
+      "tipo": "fixo",
+      "valor": 100
+    },
+    {
+      "id": "fim-de-semana",
+      "nome": "Sábado, domingo ou feriado",
+      "desc": "Sessões fora de dias úteis têm acréscimo sobre o valor do formato.",
+      "tipo": "percentual",
+      "valor": 30
+    },
+    {
+      "id": "expressa",
+      "nome": "Entrega expressa (3 dias úteis)",
+      "desc": "Prioridade total na fila de edição.",
+      "tipo": "percentual",
+      "valor": 25
+    }
+  ],
+  "naoIncluso": [
+    "Deslocamento para fora de BH e Contagem (combinado por km)",
+    "Locações pagas (estúdio, ingressos, taxas de uso de espaço)",
+    "Maquiagem, figurino e produção de arte",
+    "Impressões e álbuns físicos (orçados à parte)"
+  ],
+  "condicoes": [
+    "Reserva da data com 30% do valor; restante na entrega",
+    "Parcelamento em até 3x sem juros no cartão",
+    "1 rodada de ajustes finos incluída na seleção final",
+    "Remarcação sem custo com até 48h de antecedência",
+    "As fotos podem aparecer no meu portfólio, salvo pedido em contrário"
+  ],
+  "email": "estevaosouza2804@gmail.com"
+}

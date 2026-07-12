@@ -1,0 +1,110 @@
+{
+  "cliente": "NOME DO CLIENTE",
+  "projeto": "Vídeo institucional / videoclipe",
+  "data": "2026-07-12",
+  "validade": "2026-07-27",
+  "intro": "Oi, NOME! A partir do que conversamos, desenhei três formatos de produção. Todos incluem roteiro alinhado com você antes da filmagem, edição, color grading em DaVinci Resolve e trilha licenciada.",
+  "sufixoPreco": "",
+  "opcoes": [
+    {
+      "id": "essencial",
+      "nome": "Essencial",
+      "preco": 1800,
+      "resumo": "Produção enxuta em uma diária, ideal para começar.",
+      "itens": [
+        "1 diária de filmagem em 1 locação",
+        "Vídeo final de até 2 min",
+        "Edição, color grading e trilha licenciada",
+        "2 rodadas de revisão",
+        "Master em 16:9 + 1 corte vertical",
+        "Entrega em até 15 dias úteis"
+      ],
+      "recomendado": false
+    },
+    {
+      "id": "completo",
+      "nome": "Completo",
+      "preco": 3200,
+      "resumo": "Duas diárias, direção completa e mais entregas.",
+      "itens": [
+        "2 diárias de filmagem em até 2 locações",
+        "Direção, decupagem e roteiro desenvolvidos junto",
+        "Vídeo final de até 3 min + depoimentos e B-roll",
+        "Edição, color grading e trilha licenciada",
+        "3 rodadas de revisão",
+        "Master em 16:9 + 2 cortes verticais",
+        "Entrega em até 20 dias úteis"
+      ],
+      "recomendado": true
+    },
+    {
+      "id": "premium",
+      "nome": "Premium",
+      "preco": 4500,
+      "resumo": "Produção completa com pacote de entregas para todos os canais.",
+      "itens": [
+        "2 diárias com iluminação dedicada",
+        "Imagens aéreas com drone",
+        "Direção, decupagem e roteiro desenvolvidos junto",
+        "Vídeo final de até 4 min",
+        "Edição, color grading e trilha licenciada",
+        "3 rodadas de revisão",
+        "Master 16:9 + 3 cortes verticais + versão legendada",
+        "Entrega em até 25 dias úteis"
+      ],
+      "recomendado": false
+    }
+  ],
+  "adicionais": [
+    {
+      "id": "exclusividade",
+      "nome": "Cessão total de direitos",
+      "desc": "Uso ilimitado incluindo mídia paga e TV, arquivos brutos em alta e não uso das imagens no meu portfólio. Sem isso, a licença cobre uso orgânico em site e redes.",
+      "tipo": "percentual",
+      "valor": 30
+    },
+    {
+      "id": "diaria-extra",
+      "nome": "Diária extra de filmagem",
+      "desc": "Mais uma locação ou mais material de cobertura.",
+      "tipo": "fixo",
+      "valor": 900
+    },
+    {
+      "id": "cortes-extras",
+      "nome": "3 cortes verticais extras",
+      "desc": "Versões adicionais de 30–60s prontas para as redes.",
+      "tipo": "fixo",
+      "valor": 450
+    },
+    {
+      "id": "fim-de-semana",
+      "nome": "Filmagem em fim de semana ou feriado",
+      "desc": "Diárias fora de dias úteis têm acréscimo sobre o valor do formato.",
+      "tipo": "percentual",
+      "valor": 35
+    },
+    {
+      "id": "expressa",
+      "nome": "Entrega expressa (metade do prazo)",
+      "desc": "Prioridade total na fila de edição.",
+      "tipo": "percentual",
+      "valor": 25
+    }
+  ],
+  "naoIncluso": [
+    "Deslocamento para fora de BH e Contagem (combinado por km)",
+    "Locações pagas, cenografia e figurino",
+    "Atores, modelos e locutor profissional",
+    "Rodadas de revisão além das inclusas (orçadas à parte)",
+    "Impulsionamento e mídia paga"
+  ],
+  "condicoes": [
+    "Reserva da agenda com 40% do valor; 60% na aprovação do corte final",
+    "Parcelamento em até 6x sem juros no cartão",
+    "Roteiro e cronograma aprovados por escrito antes da filmagem",
+    "Alterações de escopo depois da aprovação geram novo orçamento",
+    "O vídeo pode aparecer no meu portfólio, salvo cessão total de direitos"
+  ],
+  "email": "estevaosouza2804@gmail.com"
+}

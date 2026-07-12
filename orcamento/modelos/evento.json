@@ -1,0 +1,88 @@
+{
+  "cliente": "NOME DO CLIENTE",
+  "projeto": "Cobertura de evento",
+  "data": "2026-07-12",
+  "validade": "2026-07-27",
+  "intro": "Oi, NOME! Montei três formatos de cobertura para o seu evento. Em todos, eu acompanho os momentos-chave e entrego o material tratado em galeria privada.",
+  "sufixoPreco": "",
+  "opcoes": [
+    {
+      "id": "essencial",
+      "nome": "Essencial",
+      "preco": 500,
+      "resumo": "Registro fotográfico dos momentos principais.",
+      "itens": [
+        "Até 3h de cobertura fotográfica",
+        "80 fotos tratadas em alta resolução",
+        "Galeria digital privada",
+        "Entrega em até 10 dias úteis"
+      ],
+      "recomendado": false
+    },
+    {
+      "id": "completo",
+      "nome": "Completo",
+      "preco": 800,
+      "resumo": "Fotos + um vídeo curto para as redes no dia seguinte.",
+      "itens": [
+        "Até 4h de cobertura fotográfica",
+        "150 fotos tratadas em alta resolução",
+        "1 reel vertical de 60s editado com trilha",
+        "Prévia com 10 fotos em 48h",
+        "Entrega em até 12 dias úteis"
+      ],
+      "recomendado": true
+    },
+    {
+      "id": "premium",
+      "nome": "Premium",
+      "preco": 1300,
+      "resumo": "Cobertura estendida com filme-resumo do evento.",
+      "itens": [
+        "Até 6h de cobertura foto + vídeo",
+        "200 fotos tratadas em alta resolução",
+        "Filme highlight de 2 a 3 min com color grading",
+        "2 reels verticais de 60s",
+        "Prévia com 10 fotos em 48h",
+        "Entrega em até 15 dias úteis"
+      ],
+      "recomendado": false
+    }
+  ],
+  "adicionais": [
+    {
+      "id": "hora-extra",
+      "nome": "Hora extra de cobertura",
+      "desc": "Caso o evento se estenda além do combinado (valor por hora).",
+      "tipo": "fixo",
+      "valor": 130
+    },
+    {
+      "id": "cortes-extras",
+      "nome": "3 cortes verticais extras",
+      "desc": "Versões adicionais de 30–60s para as redes, editadas com trilha.",
+      "tipo": "fixo",
+      "valor": 350
+    },
+    {
+      "id": "feriado",
+      "nome": "Data em feriado",
+      "desc": "Coberturas em feriados têm acréscimo sobre o valor do formato.",
+      "tipo": "percentual",
+      "valor": 30
+    }
+  ],
+  "naoIncluso": [
+    "Deslocamento para fora de BH e Contagem (combinado por km)",
+    "Alimentação da equipe em eventos acima de 4h",
+    "Segundo fotógrafo ou cinegrafista (orçado à parte)",
+    "Impressões, álbuns e fotolembranças"
+  ],
+  "condicoes": [
+    "Reserva da data com 30% do valor; restante na entrega",
+    "Parcelamento em até 3x sem juros no cartão",
+    "1 rodada de ajustes no vídeo incluída; rodadas extras orçadas à parte",
+    "As imagens podem aparecer no meu portfólio, salvo pedido em contrário"
+  ],
+  "email": "estevaosouza2804@gmail.com"
+}

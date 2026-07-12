@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta · Estêvão Souza</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Proposta de orçamento exclusiva." />
+  <meta name="theme-color" content="#0a0a0b" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%230a0a0b'/%3E%3Crect x='9' y='9' width='6' height='6' fill='%23e0a531'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="orcamento.css" />
+</head>
+<body>
+
+  <!-- ============ NAV (mínima: marca + volta ao site) ============ -->
+  <header class="nav is-stuck orc-nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="/" aria-label="Voltar ao início">
+        <span class="nav__mark" aria-hidden="true"></span>
+        <span class="nav__wordmark">Estêvão Souza</span>
+      </a>
+      <a href="/" class="btn btn--ghost btn--sm">Ver portfólio</a>
+    </div>
+  </header>
+
+  <main class="orc" id="orcMain">
+    <!-- Estado de carregamento; o JS substitui pelo conteúdo da proposta -->
+    <section class="orc-state" id="orcState">
+      <p class="orc-state__msg">Carregando proposta…</p>
+    </section>
+    <noscript>
+      <section class="orc-state">
+        <p class="orc-state__msg">
+          Esta proposta precisa de JavaScript para ser exibida.
+          Se preferir, escreva para
+          <a class="link-arrow" href="mailto:estevaosouza2804@gmail.com">estevaosouza2804@gmail.com</a>
+        </p>
+      </section>
+    </noscript>
+  </main>
+
+  <!-- ============ BARRA DE RESUMO (fixa embaixo) ============ -->
+  <div class="orc-bar" id="orcBar" hidden>
+    <div class="orc-bar__inner">
+      <div class="orc-bar__total">
+        <span class="orc-bar__label">Total estimado</span>
+        <strong class="orc-bar__value" id="orcTotal">—</strong>
+      </div>
+      <div class="orc-bar__actions">
+        <button class="btn btn--ghost btn--sm" type="button" id="orcCopy">Copiar resumo</button>
+        <a class="btn btn--accent btn--sm" id="orcAccept" href="#">Aceitar proposta</a>
+      </div>
+    </div>
+    <p class="orc-bar__status" role="status" aria-live="polite" id="orcStatus"></p>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer orc-footer">
+    <div class="footer__inner">
+      <span class="footer__brand">Estêvão Souza</span>
+      <span class="footer__copy">Proposta confidencial · preparada exclusivamente para você</span>
+    </div>
+  </footer>
+
+  <script src="orcamento.js"></script>
+</body>
+</html>
