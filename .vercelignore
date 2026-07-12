@@ -1,0 +1,20 @@
+# Fotos originais em alta — o site usa apenas images/web
+images/images-eu-dolomitas/
+images/images-eu-fortezza/
+images/images-eu-innsbruck/
+images/images-eu-milao/
+images/images-eu-munique/
+images/images-eu-veneza/
+images/images-gruta-lapinha/
+images/images-gruta-maquine/
+images/images-gruta-rei-do-mato/
+images/images-parque-itatiaia/
+images/images-parque-serra-papagaio/
+images/*.HEIC
+images/*.heic
+
+# Diversos
+_backups/
+_backup-design/
+*.zip
+.claude/

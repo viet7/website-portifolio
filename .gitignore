@@ -12,3 +12,9 @@ images-parque-serra-papagaio/
 _backups/
 _backup-design/
 *.zip
+
+# Originais soltos e diretórios de ferramentas
+images/*.HEIC
+images/*.heic
+.claude/
+.vercel/
