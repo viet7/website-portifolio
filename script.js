@@ -146,6 +146,13 @@ function renderLightbox() {
   lightboxPrev.hidden = !multi;
   lightboxNext.hidden = !multi;
   lightboxCounter.textContent = multi ? `${lbIndex + 1} / ${lbItems.length}` : '';
+  // pré-carrega as vizinhas para navegação instantânea
+  if (multi) {
+    [1, -1].forEach((dir) => {
+      const neighbor = lbItems[(lbIndex + dir + lbItems.length) % lbItems.length];
+      new Image().src = neighbor.src;
+    });
+  }
 }
 function openLightbox(items, startIndex) {
   if (!lightbox || !items.length) return;
@@ -161,7 +168,7 @@ function openLightbox(items, startIndex) {
 function closeLightbox() {
   if (!lightbox || lightbox.hidden) return;
   lightbox.hidden = true;
-  lightboxImg.src = '';
+  lightboxImg.removeAttribute('src'); // src='' dispararia request espúrio em alguns browsers
   lbItems = [];
   document.body.style.overflow = '';
   lastFocused?.focus();
@@ -179,12 +186,14 @@ document.querySelectorAll('[data-full]').forEach((el) => {
     openLightbox([{ src: el.dataset.full, cap: el.dataset.cap, alt: img?.alt }], 0);
   });
 });
-// galerias temáticas (Séries)
+// galerias temáticas (Séries) — a contagem de fotos vem do próprio objeto
+// galleries, para o HTML nunca ficar defasado ao adicionar/remover fotos
 document.querySelectorAll('[data-gallery]').forEach((el) => {
-  el.addEventListener('click', () => {
-    const set = galleries[el.dataset.gallery];
-    if (set) openLightbox(set, 0);
-  });
+  const set = galleries[el.dataset.gallery];
+  if (!set) return;
+  const count = el.querySelector('.serie__count');
+  if (count) count.textContent = `${set.length} fotos`;
+  el.addEventListener('click', () => openLightbox(set, 0));
 });
 
 lightboxPrev?.addEventListener('click', () => stepLightbox(-1));
@@ -204,8 +213,17 @@ lightbox?.addEventListener('keydown', (e) => {
   if (!focusables.length) return;
   e.preventDefault();
   const i = focusables.indexOf(document.activeElement);
-  const nextI = (i + (e.shiftKey ? -1 : 1) + focusables.length) % focusables.length;
+  const nextI = i === -1
+    ? (e.shiftKey ? focusables.length - 1 : 0) // foco fora dos botões: entra pela ponta certa
+    : (i + (e.shiftKey ? -1 : 1) + focusables.length) % focusables.length;
   focusables[nextI].focus();
+});
+
+/* ---- Dissuasão de download das fotos: bloqueia o menu "Salvar imagem"
+   sobre mídia e no lightbox. Não é proteção real (print e DevTools sempre
+   funcionam) — para isso, marca d'água ou servir resolução menor. ---- */
+document.addEventListener('contextmenu', (e) => {
+  if (e.target.closest('img, video, .lightbox')) e.preventDefault();
 });
 
 /* ---- Links de rede social ainda sem URL definida: não navegar ---- */

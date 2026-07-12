@@ -8,6 +8,10 @@
   <meta property="og:title" content="Estêvão Souza · Fotógrafo e Videomaker" />
   <meta property="og:description" content="Filmes e videoclipes para artistas, com olhar cinematográfico. Direção, edição, color e som." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://website-portifolio-sigma.vercel.app/" />
+  <meta property="og:image" content="https://website-portifolio-sigma.vercel.app/images/web/dolomitas-02.jpg" />
+  <meta property="og:locale" content="pt_BR" />
+  <link rel="canonical" href="https://website-portifolio-sigma.vercel.app/" />
   <meta name="theme-color" content="#0a0a0b" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%230a0a0b'/%3E%3Crect x='9' y='9' width='6' height='6' fill='%23e0a531'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
@@ -57,7 +61,7 @@
     <section class="hero" id="hero">
       <div class="hero__media">
         <!-- TODO: quando tiver o reel, trocar esta imagem por um <video> de fundo -->
-        <img class="hero__video" src="images/web/dolomitas-02.jpg" alt="Paisagem das Dolomitas, Itália" />
+        <img class="hero__video" src="images/web/dolomitas-02.jpg" alt="Paisagem das Dolomitas, Itália" fetchpriority="high" />
         <div class="hero__scrim" aria-hidden="true"></div>
       </div>
 
@@ -286,9 +290,10 @@
     <!-- ============ VIMEO (convite para o canal) ============ -->
     <section class="vimeo-cta" aria-label="Vimeo">
       <div class="vimeo-cta__inner">
-        <img class="vimeo-cta__icon" src="https://cdn.simpleicons.org/vimeo/e0a531" alt="" width="32" height="32" />
+        <img class="vimeo-cta__icon" src="images/icons/vimeo-accent.svg" alt="" width="32" height="32" />
         <p class="vimeo-cta__text">Filmes completos e cortes, publicados no Vimeo.</p>
-        <a href="#" data-placeholder target="_blank" rel="noopener noreferrer" class="link-arrow">Seguir no Vimeo</a>
+        <!-- sem href até a URL real existir: <a> sem href não navega nem entra na ordem de Tab -->
+        <a data-placeholder class="link-arrow">Seguir no Vimeo</a>
       </div>
     </section>
 
@@ -332,9 +337,9 @@
     <div class="footer__inner">
       <span class="footer__brand">Estêvão Souza</span>
       <nav class="footer__social" aria-label="Redes sociais">
-        <a href="#" data-placeholder target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="https://cdn.simpleicons.org/instagram/9a9a98" alt="" width="20" height="20" /></a>
-        <a href="#" data-placeholder target="_blank" rel="noopener noreferrer" aria-label="Vimeo"><img src="https://cdn.simpleicons.org/vimeo/9a9a98" alt="" width="20" height="20" /></a>
-        <a href="#" data-placeholder target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="https://cdn.simpleicons.org/youtube/9a9a98" alt="" width="20" height="20" /></a>
+        <a data-placeholder aria-label="Instagram"><img src="images/icons/instagram.svg" alt="" width="20" height="20" /></a>
+        <a data-placeholder aria-label="Vimeo"><img src="images/icons/vimeo.svg" alt="" width="20" height="20" /></a>
+        <a data-placeholder aria-label="YouTube"><img src="images/icons/youtube.svg" alt="" width="20" height="20" /></a>
       </nav>
       <span class="footer__copy">© 2026 Estêvão Souza</span>
     </div>
