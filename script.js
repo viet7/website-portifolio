@@ -104,6 +104,8 @@ const galleries = {
     { src: 'images/web/gruta-maquine-02.jpg', cap: 'Gruta de Maquiné, Cordisburgo' },
     { src: 'images/web/gruta-maquine-03.jpg', cap: 'Gruta de Maquiné, Cordisburgo' },
     { src: 'images/web/gruta-rei-do-mato-01.jpg', cap: 'Gruta Rei do Mato, Sete Lagoas' },
+    { src: 'images/web/gruta-rei-do-mato-02.jpg', cap: 'Gruta Rei do Mato, Sete Lagoas' },
+    { src: 'images/web/gruta-rei-do-mato-03.jpg', cap: 'Gruta Rei do Mato, Sete Lagoas' },
   ],
   montanhas: [
     { src: 'images/web/itatiaia-arco.jpg', cap: 'Parque Nacional do Itatiaia' },
