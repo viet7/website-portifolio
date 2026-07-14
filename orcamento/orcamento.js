@@ -67,7 +67,7 @@ if (!token || !/^[a-z0-9-]{3,64}$/.test(token)) {
 
 /* ---- Render ---- */
 function render(data) {
-  document.title = `Proposta para ${data.cliente} · Estêvão Souza`;
+  document.title = `Proposta para ${data.cliente} · Estevão Souza`;
 
   const frag = document.createDocumentFragment();
   const sufixo = data.sufixoPreco || '';
@@ -240,7 +240,7 @@ function render(data) {
     totalEl.append(brl(total));
     if (sufixo) totalEl.append(el('small', null, sufixo));
 
-    const msg = `Olá, Estêvão! Quero seguir com a proposta.\n\n${summaryText()}\n\n— ${data.cliente}`;
+    const msg = `Olá, Estevão! Quero seguir com a proposta.\n\n${summaryText()}\n\n— ${data.cliente}`;
     if (data.whatsapp) {
       acceptBtn.href = `https://wa.me/${data.whatsapp}?text=${encodeURIComponent(msg)}`;
       acceptBtn.target = '_blank';

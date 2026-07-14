@@ -1,4 +1,4 @@
-/* Estêvão Souza · portfólio audiovisual
+/* Estevão Souza · portfólio audiovisual
    Motion contido: IntersectionObserver para nav e reveals (sem scroll listeners). */
 
 /* ---- Anos de estrada (calculado, nunca fica desatualizado) ---- */
