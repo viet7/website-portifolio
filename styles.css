@@ -1,6 +1,7 @@
 /* =========================================================
    Estevão Souza — Portfólio audiovisual
-   Tema: dark travado · Acento único: âmbar · Raio: 0 (reto)
+   Tema: dark quente com faixas alternadas (ref. EFA/Vimeo)
+   Acento único: âmbar · Raio: 0 (reto)
    Display: Space Grotesk · Corpo: Manrope (self-host via fontsource CDN)
    ========================================================= */
 
@@ -28,10 +29,12 @@
 
 /* ---- Tokens ---- */
 :root {
-  --bg:        #0a0a0b;
-  --bg-elev:   #121214;
-  --surface:   #16161a;
+  --bg:        #1c1915;   /* base escura quente */
+  --bg-alt:    #27231e;   /* faixa um tom mais clara, alterna com a base */
+  --bg-elev:   #221e19;
+  --surface:   #2b2721;
   --line:      rgba(244, 243, 240, 0.10);
+  --line-hi:   rgba(244, 243, 240, 0.30);  /* hairline no hover */
   --line-soft: rgba(244, 243, 240, 0.06);
   --text:      #f4f3f0;
   --text-dim:  #a3a29d;
@@ -45,6 +48,9 @@
 
   --wrap: 1240px;
   --gut: clamp(1.25rem, 4vw, 4rem);
+  /* seções full-bleed: o fundo vai de borda a borda e o padding lateral
+     centraliza o conteúdo na largura --wrap (substitui max-width+margin) */
+  --pad-x: max(var(--gut), calc((100% - var(--wrap)) / 2));
   --radius: 0px;            /* shape lock: tudo reto */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -158,11 +164,11 @@ ul { list-style: none; padding: 0; }
   position: fixed; inset: 0 0 auto 0; z-index: 100;
   height: 68px;
   backdrop-filter: blur(8px);
-  background: linear-gradient(180deg, rgba(10,10,11,.72), rgba(10,10,11,0));
+  background: linear-gradient(180deg, rgba(28,25,21,.72), rgba(28,25,21,0));
   transition: background .3s var(--ease), border-color .3s var(--ease);
   border-bottom: 1px solid transparent;
 }
-.nav.is-stuck { background: rgba(10,10,11,.9); border-bottom-color: var(--line-soft); }
+.nav.is-stuck { background: rgba(28,25,21,.9); border-bottom-color: var(--line-soft); }
 .nav__inner {
   max-width: var(--wrap); margin: 0 auto; height: 100%;
   padding: 0 var(--gut);
@@ -221,8 +227,8 @@ ul { list-style: none; padding: 0; }
 .hero__scrim {
   position: absolute; inset: 0; z-index: 2;
   background:
-    linear-gradient(180deg, rgba(10,10,11,.12) 0%, rgba(10,10,11,0) 45%, rgba(10,10,11,.72) 100%),
-    radial-gradient(110% 85% at 12% 100%, rgba(10,10,11,.8), transparent 55%);
+    linear-gradient(180deg, rgba(28,25,21,.12) 0%, rgba(28,25,21,0) 45%, rgba(28,25,21,.72) 100%),
+    radial-gradient(110% 85% at 12% 100%, rgba(28,25,21,.8), transparent 55%);
 }
 .hero__content { position: relative; z-index: 1; max-width: var(--wrap); margin: 0 auto; width: 100%; }
 .hero__title {
@@ -248,8 +254,7 @@ ul { list-style: none; padding: 0; }
    REEL (featured media + text split)
    ========================================================= */
 .reel {
-  max-width: var(--wrap); margin: 0 auto;
-  padding: clamp(5rem, 12vh, 9rem) var(--gut);
+  padding: clamp(5rem, 12vh, 9rem) var(--pad-x);
   display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
 }
@@ -257,7 +262,7 @@ ul { list-style: none; padding: 0; }
 .reel__text .lede { margin-bottom: 1.6rem; }
 .reel__frame {
   position: relative; aspect-ratio: 16 / 9; overflow: hidden;
-  background: var(--surface); border: 1px solid var(--line-soft);
+  background: var(--surface); border: 1px solid var(--line);
 }
 .reel__video { width: 100%; height: 100%; object-fit: cover; }
 .play {
@@ -282,8 +287,8 @@ ul { list-style: none; padding: 0; }
    TRABALHOS (asymmetric gallery grid — 5 itens, 5 células)
    ========================================================= */
 .works {
-  max-width: var(--wrap); margin: 0 auto;
-  padding: clamp(2rem, 4vh, 4rem) var(--gut) clamp(5rem, 12vh, 9rem);
+  background: var(--bg-alt);
+  padding: clamp(4rem, 9vh, 6.5rem) var(--pad-x) clamp(5rem, 12vh, 9rem);
 }
 .works__head { margin-bottom: 2.5rem; }
 .works__head .eyebrow { margin-bottom: .9rem; }
@@ -301,7 +306,12 @@ ul { list-style: none; padding: 0; }
 .work--tall { grid-column: span 2; grid-row: span 2; }
 .work--full { grid-column: span 6; }
 .work--full .work__img img { aspect-ratio: 21/9; }
-.work__img { overflow: hidden; background: var(--surface); position: relative; }
+.work__img {
+  overflow: hidden; background: var(--surface); position: relative;
+  border: 1px solid var(--line);
+  transition: border-color .3s var(--ease);
+}
+.work:hover .work__img, .work:focus-visible .work__img { border-color: var(--line-hi); }
 
 /* preview em vídeo no hover (ref: videomaker portfolios) */
 .card-vid {
@@ -314,7 +324,7 @@ ul { list-style: none; padding: 0; }
 .work__img img {
   width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3;
   transition: transform .6s var(--ease), filter .6s var(--ease);
-  filter: grayscale(.25) brightness(.92);
+  filter: grayscale(.1) brightness(.96);
 }
 .work--tall .work__img img { aspect-ratio: 3/4; }
 .work:hover .work__img img { transform: scale(1.04); filter: grayscale(0) brightness(1); }
@@ -334,47 +344,59 @@ ul { list-style: none; padding: 0; }
 }
 
 /* =========================================================
-   SÉRIES (carrossel horizontal — ref: hyogen / alanschaller)
+   SÉRIES (carrossel horizontal — arrastar + barra, ref. EFA/Vimeo)
    ========================================================= */
 .series {
-  max-width: var(--wrap); margin: 0 auto;
-  padding: clamp(5rem, 12vh, 9rem) var(--gut);
-  border-top: 1px solid var(--line-soft);
+  padding: clamp(5rem, 12vh, 9rem) var(--pad-x);
 }
 .series__head {
   display: flex; align-items: flex-end; justify-content: space-between;
   gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.2rem;
 }
 .series__note { color: var(--text-mute); margin-top: .6rem; max-width: 40ch; }
-.series__nav { display: flex; gap: .6rem; }
-.series__btn {
-  width: 48px; height: 48px; display: grid; place-items: center;
-  background: transparent; border: 1px solid var(--line); color: var(--text);
-  cursor: pointer; border-radius: var(--radius);
-  transition: border-color .25s var(--ease), color .25s var(--ease), opacity .25s var(--ease);
-}
-.series__btn:hover { border-color: var(--accent); color: var(--accent); }
-.series__btn[disabled] { opacity: .25; cursor: default; }
 .series__track {
   --sgap: clamp(1rem, 2vw, 1.5rem);
   display: flex; gap: var(--sgap);
-  overflow-x: auto; scroll-snap-type: x mandatory;
+  overflow-x: auto; scroll-snap-type: x proximity;
   scrollbar-width: none; -ms-overflow-style: none;
   padding-bottom: .5rem; scroll-padding-left: var(--gut);
+  cursor: grab;
+}
+.series__track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none; /* o snap brigaria com o arrasto livre */
+  user-select: none;
 }
 .series__track::-webkit-scrollbar { display: none; }
-/* exatamente 3 cards por vez no desktop, sem cortar o do canto */
+/* 3.3 cards por vez no desktop: o card cortado no canto sinaliza
+   que há mais conteúdo para arrastar (peek, como na referência) */
 .serie {
-  flex: 0 0 calc((100% - 2 * var(--sgap)) / 3); scroll-snap-align: start;
+  flex: 0 0 calc((100% - 3 * var(--sgap)) / 3.3); scroll-snap-align: start;
   background: none; border: 0; padding: 0; margin: 0; text-align: left;
   font: inherit; color: inherit; cursor: pointer;
 }
-@media (max-width: 820px) { .serie { flex-basis: calc((100% - var(--sgap)) / 2); } }
+@media (max-width: 820px) { .serie { flex-basis: calc((100% - 2 * var(--sgap)) / 2.2); } }
 @media (max-width: 520px) { .serie { flex-basis: 84%; } }
-.serie__img { overflow: hidden; background: var(--surface); aspect-ratio: 3 / 4; position: relative; }
+
+/* barra de rolagem arrastável sob o trilho */
+.series__scrollbar {
+  position: relative; margin-top: 1.6rem; height: 2px;
+  background: var(--line-soft);
+  cursor: pointer; touch-action: none;
+}
+.series__scrollbar::before { content: ""; position: absolute; inset: -10px 0; } /* área de clique maior */
+.series__scrollbar-thumb {
+  position: absolute; top: -1px; left: 0; height: 4px; width: 25%;
+  background: var(--text-mute);
+  transition: background .25s var(--ease);
+}
+.series__scrollbar:hover .series__scrollbar-thumb { background: var(--accent); }
+
+.serie__img { overflow: hidden; background: var(--surface); aspect-ratio: 3 / 4; position: relative; border: 1px solid var(--line); transition: border-color .3s var(--ease); }
+.serie:hover .serie__img, .serie:focus-visible .serie__img { border-color: var(--line-hi); }
 .serie__img img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: grayscale(.5) brightness(.9);
+  filter: grayscale(.2) brightness(.95);
   transition: filter .5s var(--ease), transform .6s var(--ease);
 }
 .serie:hover .serie__img img { filter: none; transform: scale(1.03); }
@@ -387,8 +409,8 @@ ul { list-style: none; padding: 0; }
    FRAMES (galeria densa estilo masonry — ref: illkoncept)
    ========================================================= */
 .frames {
-  max-width: var(--wrap); margin: 0 auto;
-  padding: clamp(2rem, 4vh, 4rem) var(--gut) clamp(5rem, 12vh, 9rem);
+  background: var(--bg-alt);
+  padding: clamp(4rem, 9vh, 6.5rem) var(--pad-x) clamp(5rem, 12vh, 9rem);
 }
 .frames__head {
   display: flex; align-items: baseline; justify-content: space-between;
@@ -405,11 +427,16 @@ ul { list-style: none; padding: 0; }
   background: none; border: 0; padding: 0; cursor: pointer;
 }
 /* overflow vive no wrapper, não no botão, para não cortar o anel de foco */
-.frame__img { overflow: hidden; background: var(--surface); position: relative; }
+.frame__img {
+  overflow: hidden; background: var(--surface); position: relative;
+  border: 1px solid var(--line);
+  transition: border-color .3s var(--ease);
+}
+.frame:hover .frame__img, .frame:focus-visible .frame__img { border-color: var(--line-hi); }
 .frame img {
   width: 100%; height: 100%; object-fit: cover;
   aspect-ratio: 4 / 5;
-  filter: grayscale(.6) brightness(.85);
+  filter: grayscale(.25) brightness(.93);
   transition: filter .5s var(--ease), transform .6s var(--ease);
 }
 .frame:hover img { filter: grayscale(0) brightness(1); transform: scale(1.03); }
@@ -428,7 +455,7 @@ ul { list-style: none; padding: 0; }
   position: fixed; inset: 0; z-index: 300;
   display: grid; place-items: center;
   padding: clamp(1rem, 4vw, 3rem);
-  background: rgba(7, 7, 8, 0.94);
+  background: rgba(18, 16, 13, 0.94);
   backdrop-filter: blur(6px);
   opacity: 0; transition: opacity .35s var(--ease);
 }
@@ -450,10 +477,10 @@ ul { list-style: none; padding: 0; }
 .lightbox__nav {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 52px; height: 52px; display: grid; place-items: center;
-  background: rgba(10,10,11,.55); border: 1px solid var(--line); color: var(--text);
+  background: rgba(28,25,21,.55); border: 1px solid var(--line); color: var(--text);
   cursor: pointer; transition: border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease);
 }
-.lightbox__nav:hover { border-color: var(--accent); color: var(--accent); background: rgba(10,10,11,.8); }
+.lightbox__nav:hover { border-color: var(--accent); color: var(--accent); background: rgba(28,25,21,.8); }
 .lightbox__prev { left: clamp(1rem, 3vw, 2rem); }
 .lightbox__next { right: clamp(1rem, 3vw, 2rem); }
 .lightbox__nav[hidden] { display: none; }
@@ -466,9 +493,7 @@ ul { list-style: none; padding: 0; }
    SERVIÇOS (hairline index list)
    ========================================================= */
 .fazer {
-  max-width: var(--wrap); margin: 0 auto;
-  padding: clamp(5rem, 12vh, 9rem) var(--gut);
-  border-top: 1px solid var(--line-soft);
+  padding: clamp(5rem, 12vh, 9rem) var(--pad-x);
 }
 .fazer__title { margin-bottom: 2.5rem; max-width: 18ch; }
 .row {
@@ -492,11 +517,11 @@ ul { list-style: none; padding: 0; }
    SOBRE (stacked editorial + portrait)
    ========================================================= */
 .about {
-  max-width: var(--wrap); margin: 0 auto;
-  padding: clamp(5rem, 12vh, 9rem) var(--gut);
+  background: var(--bg-alt);
+  padding: clamp(5rem, 12vh, 9rem) var(--pad-x);
   display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3.5rem);
 }
-.about__portrait { overflow: hidden; background: var(--surface); order: 2; }
+.about__portrait { overflow: hidden; background: var(--surface); order: 2; border: 1px solid var(--line); }
 .about__portrait img { width: 100%; aspect-ratio: 3/2; object-fit: cover; }
 .about__text { order: 1; }
 .about__text .section-title { margin-bottom: 1.4rem; }
@@ -513,8 +538,6 @@ ul { list-style: none; padding: 0; }
    ========================================================= */
 .vimeo-cta {
   padding: clamp(3rem, 7vh, 5rem) var(--gut);
-  border-top: 1px solid var(--line-soft);
-  border-bottom: 1px solid var(--line-soft);
   text-align: center;
 }
 .vimeo-cta__inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
@@ -524,6 +547,7 @@ ul { list-style: none; padding: 0; }
    CONTATO
    ========================================================= */
 .contact {
+  background: var(--bg-alt);
   padding: clamp(6rem, 16vh, 11rem) var(--gut);
   text-align: center;
 }
@@ -557,7 +581,7 @@ ul { list-style: none; padding: 0; }
 /* =========================================================
    FOOTER
    ========================================================= */
-.footer { border-top: 1px solid var(--line-soft); }
+.footer { background: var(--bg); }
 .footer__inner {
   max-width: var(--wrap); margin: 0 auto; padding: 2rem var(--gut);
   display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;

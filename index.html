@@ -12,8 +12,8 @@
   <meta property="og:image" content="https://website-portifolio-sigma.vercel.app/images/web/dolomitas-02.jpg" />
   <meta property="og:locale" content="pt_BR" />
   <link rel="canonical" href="https://website-portifolio-sigma.vercel.app/" />
-  <meta name="theme-color" content="#0a0a0b" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%230a0a0b'/%3E%3Crect x='9' y='9' width='6' height='6' fill='%23e0a531'/%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#1c1915" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%231c1915'/%3E%3Crect x='9' y='9' width='6' height='6' fill='%23e0a531'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -163,15 +163,7 @@
       <div class="series__head">
         <div>
           <h2 class="section-title">Séries</h2>
-          <p class="series__note">Coleções de fotografia por tema. Clique para abrir a galeria.</p>
-        </div>
-        <div class="series__nav">
-          <button class="series__btn" type="button" data-prev aria-label="Anterior">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M15 5 8 12l7 7-1.5 1.5L5 12l8.5-8.5z"/></svg>
-          </button>
-          <button class="series__btn" type="button" data-next aria-label="Próximo">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M9 5l7 7-7 7-1.5-1.5L13 12 7.5 6.5z"/></svg>
-          </button>
+          <p class="series__note">Coleções de fotografia por tema. Arraste para navegar, clique para abrir a galeria.</p>
         </div>
       </div>
 
@@ -204,6 +196,12 @@
           <div class="serie__img"><img loading="lazy" src="images/web/veneza-13-t.jpg" alt="Série Veneza" /></div>
           <div class="serie__meta"><h3 class="serie__title">Veneza</h3><span class="serie__count">14 fotos</span></div>
         </button>
+      </div>
+
+      <!-- barra de rolagem arrastável (ref. Vimeo/EFA); decorativa para
+           leitores de tela — teclado e touch usam a rolagem nativa do trilho -->
+      <div class="series__scrollbar" aria-hidden="true">
+        <div class="series__scrollbar-thumb"></div>
       </div>
     </section>
 

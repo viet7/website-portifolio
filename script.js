@@ -68,23 +68,67 @@ reveals.forEach((el) => revealObserver.observe(el));
   });
 })();
 
-/* ---- Carrossel de séries (scroll-snap horizontal) ---- */
+/* ---- Carrossel de séries (arrastar + barra de rolagem, ref. EFA/Vimeo)
+   Touch e teclado usam a rolagem nativa do trilho; o mouse ganha
+   drag-to-scroll e a barra embaixo espelha (e controla) a posição. ---- */
 document.querySelectorAll('[data-carousel]').forEach((carousel) => {
   const track = carousel.querySelector('.series__track');
-  const prev = carousel.querySelector('[data-prev]');
-  const next = carousel.querySelector('[data-next]');
-  if (!track || !prev || !next) return;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const step = () => Math.min(track.clientWidth * 0.8, 640);
-  const update = () => {
-    prev.disabled = track.scrollLeft <= 4;
-    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  const bar = carousel.querySelector('.series__scrollbar');
+  const thumb = carousel.querySelector('.series__scrollbar-thumb');
+  if (!track || !bar || !thumb) return;
+
+  const maxScroll = () => track.scrollWidth - track.clientWidth;
+
+  /* barra espelha a posição e a proporção visível do trilho */
+  const sync = () => {
+    const m = maxScroll();
+    const ratio = m > 0 ? track.clientWidth / track.scrollWidth : 1;
+    thumb.style.width = `${Math.max(ratio * 100, 8)}%`;
+    const range = bar.clientWidth - thumb.offsetWidth;
+    thumb.style.transform = `translateX(${m > 0 ? (track.scrollLeft / m) * range : 0}px)`;
   };
-  prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }));
-  next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' }));
-  track.addEventListener('scroll', update, { passive: true });
-  new ResizeObserver(update).observe(track);
-  update();
+  track.addEventListener('scroll', sync, { passive: true });
+  new ResizeObserver(sync).observe(track);
+  sync();
+
+  /* drag-to-scroll no trilho (só mouse; touch já arrasta nativo) */
+  let dragging = false, moved = false, startX = 0, startLeft = 0;
+  track.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    dragging = true; moved = false;
+    startX = e.clientX; startLeft = track.scrollLeft;
+    track.classList.add('is-dragging');
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 5) moved = true;
+    track.scrollLeft = startLeft - dx;
+  });
+  window.addEventListener('pointerup', () => {
+    dragging = false;
+    track.classList.remove('is-dragging');
+  });
+  /* soltar depois de arrastar não deve contar como clique no card */
+  track.addEventListener('click', (e) => {
+    if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+  }, true);
+
+  /* barra: clique salta para o ponto, arrasto acompanha o ponteiro */
+  const scrollToPointer = (e) => {
+    const rect = bar.getBoundingClientRect();
+    const range = rect.width - thumb.offsetWidth;
+    if (range <= 0) return;
+    const p = (e.clientX - rect.left - thumb.offsetWidth / 2) / range;
+    track.scrollLeft = Math.min(Math.max(p, 0), 1) * maxScroll();
+  };
+  bar.addEventListener('pointerdown', (e) => {
+    bar.setPointerCapture(e.pointerId);
+    scrollToPointer(e);
+  });
+  bar.addEventListener('pointermove', (e) => {
+    if (bar.hasPointerCapture(e.pointerId)) scrollToPointer(e);
+  });
 });
 
 /* ---- Coleções das Séries (galerias abertas no lightbox) ----
