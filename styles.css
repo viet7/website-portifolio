@@ -435,9 +435,10 @@ ul { list-style: none; padding: 0; }
   padding: clamp(.5rem, 1vw, .85rem);
 }
 .work--wide { grid-column: span 4; }
-/* o card alto não estica até o fim das duas linhas do grid:
-   a moldura abraça a foto e o resto fica no fundo da seção */
-.work--tall { grid-column: span 2; grid-row: span 2; align-self: start; }
+/* o card alto não estica até o fim das duas linhas do grid: a moldura
+   abraça a foto, e o card centraliza no espaço — o título fica logo
+   acima do bloco claro inferior, como no desenho aprovado */
+.work--tall { grid-column: span 2; grid-row: span 2; align-self: center; }
 .work--full { grid-column: span 6; }
 .work--full .work__img img { aspect-ratio: 21/9; }
 .work__img { overflow: hidden; background: var(--surface); position: relative; }
