@@ -72,7 +72,7 @@
   cursor: pointer;
   transition: border-color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease);
 }
-.tier__card:hover { border-color: var(--text-mute); }
+.tier__card:hover { border-color: var(--line-hi); }
 .tier__input:focus-visible + .tier__card { outline: 2px solid var(--accent); outline-offset: 3px; }
 .tier__input:checked + .tier__card { border-color: var(--accent); background: var(--surface); }
 
@@ -162,7 +162,7 @@
 /* ---- Barra de resumo fixa ---- */
 .orc-bar {
   position: fixed; inset: auto 0 0 0; z-index: 90;
-  background: rgba(10, 10, 11, .92); backdrop-filter: blur(8px);
+  background: rgba(28, 25, 21, .92); backdrop-filter: blur(8px);
   border-top: 1px solid var(--line);
 }
 .orc-bar__inner {
