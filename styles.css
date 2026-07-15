@@ -41,6 +41,7 @@
   --text-mute: #8c8a83;   /* ajustado para 5.7:1 sobre --bg, passa WCAG AA */
   --accent:    #e0a531;   /* âmbar/dourado, sat < 80% */
   --accent-hi: #f0b94a;
+  --accent-soft: #c9a250; /* âmbar dessaturado para superfícies grandes */
   --on-accent: #14110a;
 
   --font-display: "Space Grotesk", system-ui, sans-serif;
@@ -534,6 +535,8 @@ ul { list-style: none; padding: 0; }
   scroll-snap-type: none; /* o snap brigaria com o arrasto livre */
   user-select: none;
 }
+.series__track.is-coasting,
+.series__track.is-scrubbing { scroll-snap-type: none; } /* idem na inércia e na barra */
 .series__track::-webkit-scrollbar { display: none; }
 /* 3.3 cards por vez no desktop: o card cortado no canto sinaliza
    que há mais conteúdo para arrastar (peek, como na referência) */
@@ -563,16 +566,19 @@ ul { list-style: none; padding: 0; }
   transition: background .25s var(--ease);
 }
 .series__scrollbar:hover .series__scrollbar-thumb { background: var(--accent); }
+.series__prev,
 .series__next {
   width: 56px; height: 56px; flex: 0 0 auto;
   display: grid; place-items: center;
-  background: var(--accent); color: var(--on-accent);
+  background: var(--accent-soft); color: var(--on-accent);
   border: 0; cursor: pointer; border-radius: var(--radius);
   transition: background .25s var(--ease), transform .25s var(--ease);
 }
-.series__next:hover { background: var(--accent-hi); }
+.series__prev:hover,
+.series__next:hover { background: var(--accent); }
 .series__next:active { transform: translateX(2px); }
-@media (max-width: 520px) { .series__next { width: 48px; height: 48px; } }
+.series__prev:active { transform: translateX(-2px); }
+@media (max-width: 520px) { .series__prev, .series__next { width: 48px; height: 48px; } }
 
 .serie__img { overflow: hidden; background: var(--surface); aspect-ratio: 3 / 4; position: relative; }
 .serie__img img {

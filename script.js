@@ -95,23 +95,41 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
   new ResizeObserver(sync).observe(track);
   sync();
 
-  /* seta: avança quase uma tela por clique; no fim, volta ao começo */
+  /* setas: quase uma tela por clique; nas pontas, dão a volta */
   const next = carousel.querySelector('[data-next]');
+  const prev = carousel.querySelector('[data-prev]');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const step = () => Math.min(track.clientWidth * 0.8, 640);
   next?.addEventListener('click', () => {
     if (track.scrollLeft >= maxScroll() - 4) {
       track.scrollTo({ left: 0, behavior: reduce ? 'auto' : 'smooth' });
     } else {
-      track.scrollBy({ left: Math.min(track.clientWidth * 0.8, 640), behavior: reduce ? 'auto' : 'smooth' });
+      track.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' });
+    }
+  });
+  prev?.addEventListener('click', () => {
+    if (track.scrollLeft <= 4) {
+      track.scrollTo({ left: maxScroll(), behavior: reduce ? 'auto' : 'smooth' });
+    } else {
+      track.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' });
     }
   });
 
-  /* drag-to-scroll no trilho (só mouse; touch já arrasta nativo) */
+  /* drag-to-scroll no trilho (só mouse; touch já arrasta nativo).
+     Ao soltar, a velocidade do gesto vira inércia com atrito, como
+     no touch — sem ela o trilho parava seco no lugar. */
   let dragging = false, moved = false, startX = 0, startLeft = 0;
+  let velocity = 0, lastX = 0, lastT = 0, coastId = 0;
+  const stopCoast = () => {
+    cancelAnimationFrame(coastId);
+    track.classList.remove('is-coasting');
+  };
   track.addEventListener('pointerdown', (e) => {
     if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    stopCoast();
     dragging = true; moved = false;
     startX = e.clientX; startLeft = track.scrollLeft;
+    velocity = 0; lastX = e.clientX; lastT = performance.now();
     track.classList.add('is-dragging');
   });
   window.addEventListener('pointermove', (e) => {
@@ -119,11 +137,28 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
     const dx = e.clientX - startX;
     if (Math.abs(dx) > 5) moved = true;
     track.scrollLeft = startLeft - dx;
+    const now = performance.now();
+    if (now > lastT) velocity = (e.clientX - lastX) / (now - lastT); /* px/ms */
+    lastX = e.clientX; lastT = now;
   });
   window.addEventListener('pointerup', () => {
+    if (!dragging) return;
     dragging = false;
     track.classList.remove('is-dragging');
+    /* pausou antes de soltar (>80ms) = sem impulso */
+    if (reduce || performance.now() - lastT > 80 || Math.abs(velocity) < 0.15) return;
+    track.classList.add('is-coasting');
+    let v = velocity * 16; /* px/ms -> px/frame (~60fps) */
+    const coast = () => {
+      track.scrollLeft -= v;
+      v *= 0.94;
+      const atEdge = track.scrollLeft <= 0 || track.scrollLeft >= maxScroll();
+      if (Math.abs(v) > 0.4 && !atEdge) coastId = requestAnimationFrame(coast);
+      else stopCoast();
+    };
+    coastId = requestAnimationFrame(coast);
   });
+  track.addEventListener('wheel', stopCoast, { passive: true });
   /* soltar depois de arrastar não deve contar como clique no card */
   track.addEventListener('click', (e) => {
     if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
@@ -139,12 +174,17 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
     track.scrollLeft = Math.min(Math.max(p, 0), 1) * maxScroll();
   };
   bar.addEventListener('pointerdown', (e) => {
+    stopCoast();
     bar.setPointerCapture(e.pointerId);
+    track.classList.add('is-scrubbing'); /* sem snap: a linha segue o ponteiro 1:1 */
     scrollToPointer(e);
   });
   bar.addEventListener('pointermove', (e) => {
     if (bar.hasPointerCapture(e.pointerId)) scrollToPointer(e);
   });
+  ['pointerup', 'lostpointercapture'].forEach((ev) =>
+    bar.addEventListener(ev, () => track.classList.remove('is-scrubbing'))
+  );
 });
 
 /* ---- Coleções das Séries (galerias abertas no lightbox) ----
