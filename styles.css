@@ -85,6 +85,12 @@ ul { list-style: none; padding: 0; }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
+/* visível só para leitores de tela */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
 /* ---- Shared ---- */
 .eyebrow {
   display: inline-block;
@@ -120,7 +126,9 @@ ul { list-style: none; padding: 0; }
   font-family: var(--font-display); font-weight: 700; font-size: .92rem;
   color: var(--accent);
 }
-.link-arrow::after { content: "\2192"; transition: transform .25s var(--ease); }
+/* content com texto alternativo vazio: leitores de tela não anunciam a seta;
+   a declaração simples antes é fallback para navegadores sem a sintaxe */
+.link-arrow::after { content: "\2192"; content: "\2192" / ""; transition: transform .25s var(--ease); }
 .link-arrow:hover::after { transform: translateX(5px); }
 
 /* ---- Reveal motion ----
@@ -385,7 +393,7 @@ ul { list-style: none; padding: 0; }
   color: var(--text-dim);
 }
 .disciplines li { display: flex; align-items: center; gap: .9rem; }
-.disciplines li:not(:last-child)::after { content: "/"; color: var(--accent); font-weight: 500; }
+.disciplines li:not(:last-child)::after { content: "/"; content: "/" / ""; color: var(--accent); font-weight: 500; }
 
 /* =========================================================
    REEL (featured media + text split)

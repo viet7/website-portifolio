@@ -194,6 +194,7 @@ const lightboxCap = lightbox?.querySelector('.lightbox__cap');
 const lightboxPrev = lightbox?.querySelector('.lightbox__prev');
 const lightboxNext = lightbox?.querySelector('.lightbox__next');
 const lightboxCounter = lightbox?.querySelector('.lightbox__counter');
+const lightboxStatus = lightbox?.querySelector('#lightboxStatus');
 let lastFocused = null;
 let lbItems = [];
 let lbIndex = 0;
@@ -208,6 +209,10 @@ function renderLightbox() {
   lightboxPrev.hidden = !multi;
   lightboxNext.hidden = !multi;
   lightboxCounter.textContent = multi ? `${lbIndex + 1} / ${lbItems.length}` : '';
+  if (lightboxStatus) {
+    const pos = multi ? `Foto ${lbIndex + 1} de ${lbItems.length}` : '';
+    lightboxStatus.textContent = [pos, item.cap].filter(Boolean).join(': ');
+  }
   // pré-carrega as vizinhas para navegação instantânea
   if (multi) {
     [1, -1].forEach((dir) => {
