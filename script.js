@@ -183,7 +183,7 @@ const galleries = {
   fortezza: seq('fortezza', 25, 'Forte di Fortezza, Itália'),
   insbruck: seq('insbruck', 11, 'Innsbruck, Áustria'),
   milao: seq('milao', 13, 'Milão, Itália'),
-  munique: seq('munique', 22, 'Munique, Alemanha'),
+  munique: seq('munique', 21, 'Munique, Alemanha'),
   veneza: seq('veneza', 14, 'Veneza, Itália'),
 };
 
