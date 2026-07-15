@@ -286,8 +286,20 @@ ul { list-style: none; padding: 0; }
 /* =========================================================
    TRABALHOS (asymmetric gallery grid — 5 itens, 5 células)
    ========================================================= */
+/* faixas em dois tons (ref. EFA/Vimeo): a cor clara não ocupa a tela
+   inteira — cortes secos deixam partes na cor base, em posições variadas */
 .works {
-  background: var(--bg-alt);
+  /* dois blocos claros sobre a base escura:
+     1) superior-esquerdo — 70% da largura, descendo até ~80% da foto Litoral
+     2) inferior-direito — da borda direita até ~60% da foto Concreto,
+        do nível abaixo do título Maré Alta até ~75% de Ruído Branco */
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(180deg, var(--bg-alt) 0 36%, transparent 36%),
+    linear-gradient(180deg, transparent 0 51.5%, var(--bg-alt) 51.5% 85%, transparent 85%);
+  background-size: 70% 100%, 77% 100%;
+  background-position: 0 0, 100% 0;
+  background-repeat: no-repeat;
   padding: clamp(4rem, 9vh, 6.5rem) var(--pad-x) clamp(5rem, 12vh, 9rem);
 }
 .works__head { margin-bottom: 2.5rem; }
@@ -299,19 +311,19 @@ ul { list-style: none; padding: 0; }
 }
 .work {
   grid-column: span 2; display: block; width: 100%;
-  background: none; border: 0; padding: 0; margin: 0;
+  background: none; margin: 0;
   font: inherit; color: inherit; text-align: left; cursor: pointer;
+  /* moldura tipo quadro: a linha envolve foto + legenda, com respiro */
+  border: 1px solid var(--line);
+  padding: clamp(.5rem, 1vw, .85rem);
+  transition: border-color .3s var(--ease);
 }
+.work:hover, .work:focus-visible { border-color: var(--line-hi); }
 .work--wide { grid-column: span 4; }
 .work--tall { grid-column: span 2; grid-row: span 2; }
 .work--full { grid-column: span 6; }
 .work--full .work__img img { aspect-ratio: 21/9; }
-.work__img {
-  overflow: hidden; background: var(--surface); position: relative;
-  border: 1px solid var(--line);
-  transition: border-color .3s var(--ease);
-}
-.work:hover .work__img, .work:focus-visible .work__img { border-color: var(--line-hi); }
+.work__img { overflow: hidden; background: var(--surface); position: relative; }
 
 /* preview em vídeo no hover (ref: videomaker portfolios) */
 .card-vid {
@@ -347,7 +359,13 @@ ul { list-style: none; padding: 0; }
    SÉRIES (carrossel horizontal — arrastar + barra, ref. EFA/Vimeo)
    ========================================================= */
 .series {
-  padding: clamp(5rem, 12vh, 9rem) var(--pad-x);
+  padding: clamp(5rem, 12vh, 9rem) var(--pad-x) clamp(5rem, 12vh, 9rem);
+  /* faixa clara a 75% da largura, descendo até ~75% da altura das fotos
+     (ref. Curated Collections); o resto fica na cor base */
+  background-color: var(--bg);
+  background-image: linear-gradient(90deg, var(--bg-alt) 75%, var(--bg) 75%);
+  background-repeat: no-repeat;
+  background-size: 100% 62%;
 }
 .series__head {
   display: flex; align-items: flex-end; justify-content: space-between;
@@ -372,28 +390,45 @@ ul { list-style: none; padding: 0; }
    que há mais conteúdo para arrastar (peek, como na referência) */
 .serie {
   flex: 0 0 calc((100% - 3 * var(--sgap)) / 3.3); scroll-snap-align: start;
-  background: none; border: 0; padding: 0; margin: 0; text-align: left;
+  background: none; margin: 0; text-align: left;
   font: inherit; color: inherit; cursor: pointer;
+  border: 1px solid var(--line);
+  padding: clamp(.5rem, 1vw, .85rem);
+  transition: border-color .3s var(--ease);
 }
+.serie:hover, .serie:focus-visible { border-color: var(--line-hi); }
 @media (max-width: 820px) { .serie { flex-basis: calc((100% - 2 * var(--sgap)) / 2.2); } }
 @media (max-width: 520px) { .serie { flex-basis: 84%; } }
 
-/* barra de rolagem arrastável sob o trilho */
+/* controles: barra de progresso que enche + seta (ref. EFA/Vimeo) */
+.series__controls {
+  display: flex; align-items: center; gap: clamp(1.2rem, 3vw, 2.5rem);
+  margin-top: 1.6rem;
+}
 .series__scrollbar {
-  position: relative; margin-top: 1.6rem; height: 2px;
-  background: var(--line-soft);
+  position: relative; flex: 1; height: 2px;
+  background: var(--line);
   cursor: pointer; touch-action: none;
 }
-.series__scrollbar::before { content: ""; position: absolute; inset: -10px 0; } /* área de clique maior */
+.series__scrollbar::before { content: ""; position: absolute; inset: -12px 0; } /* área de clique maior */
 .series__scrollbar-thumb {
-  position: absolute; top: -1px; left: 0; height: 4px; width: 25%;
-  background: var(--text-mute);
+  position: absolute; top: -1px; left: 0; height: 4px; width: 30%;
+  background: var(--text-dim);
   transition: background .25s var(--ease);
 }
 .series__scrollbar:hover .series__scrollbar-thumb { background: var(--accent); }
+.series__next {
+  width: 56px; height: 56px; flex: 0 0 auto;
+  display: grid; place-items: center;
+  background: var(--accent); color: var(--on-accent);
+  border: 0; cursor: pointer; border-radius: var(--radius);
+  transition: background .25s var(--ease), transform .25s var(--ease);
+}
+.series__next:hover { background: var(--accent-hi); }
+.series__next:active { transform: translateX(2px); }
+@media (max-width: 520px) { .series__next { width: 48px; height: 48px; } }
 
-.serie__img { overflow: hidden; background: var(--surface); aspect-ratio: 3 / 4; position: relative; border: 1px solid var(--line); transition: border-color .3s var(--ease); }
-.serie:hover .serie__img, .serie:focus-visible .serie__img { border-color: var(--line-hi); }
+.serie__img { overflow: hidden; background: var(--surface); aspect-ratio: 3 / 4; position: relative; }
 .serie__img img {
   width: 100%; height: 100%; object-fit: cover;
   filter: grayscale(.2) brightness(.95);
@@ -409,7 +444,12 @@ ul { list-style: none; padding: 0; }
    FRAMES (galeria densa estilo masonry — ref: illkoncept)
    ========================================================= */
 .frames {
-  background: var(--bg-alt);
+  /* bloco claro entra a ~3/4 da 2ª coluna e desce até ~75% das fotos
+     da linha de baixo; o resto fica na cor base */
+  background-color: var(--bg);
+  background-image: linear-gradient(90deg, var(--bg) 44%, var(--bg-alt) 44%);
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
   padding: clamp(4rem, 9vh, 6.5rem) var(--pad-x) clamp(5rem, 12vh, 9rem);
 }
 .frames__head {
@@ -424,15 +464,14 @@ ul { list-style: none; padding: 0; }
 }
 .frame {
   display: block; width: 100%; margin: 0;
-  background: none; border: 0; padding: 0; cursor: pointer;
-}
-/* overflow vive no wrapper, não no botão, para não cortar o anel de foco */
-.frame__img {
-  overflow: hidden; background: var(--surface); position: relative;
+  background: none; cursor: pointer;
   border: 1px solid var(--line);
+  padding: clamp(.5rem, 1vw, .85rem);
   transition: border-color .3s var(--ease);
 }
-.frame:hover .frame__img, .frame:focus-visible .frame__img { border-color: var(--line-hi); }
+.frame:hover, .frame:focus-visible { border-color: var(--line-hi); }
+/* overflow vive no wrapper, não no botão, para não cortar o anel de foco */
+.frame__img { overflow: hidden; background: var(--surface); position: relative; }
 .frame img {
   width: 100%; height: 100%; object-fit: cover;
   aspect-ratio: 4 / 5;
@@ -517,7 +556,7 @@ ul { list-style: none; padding: 0; }
    SOBRE (stacked editorial + portrait)
    ========================================================= */
 .about {
-  background: var(--bg-alt);
+  background: linear-gradient(90deg, var(--bg-alt) 78%, var(--bg) 78%);
   padding: clamp(5rem, 12vh, 9rem) var(--pad-x);
   display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3.5rem);
 }

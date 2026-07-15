@@ -78,18 +78,29 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
   if (!track || !bar || !thumb) return;
 
   const maxScroll = () => track.scrollWidth - track.clientWidth;
+  const visibleRatio = () => track.scrollWidth > 0 ? track.clientWidth / track.scrollWidth : 1;
 
-  /* barra espelha a posição e a proporção visível do trilho */
+  /* barra de progresso: começa na fração visível e enche até 100% no fim */
   const sync = () => {
     const m = maxScroll();
-    const ratio = m > 0 ? track.clientWidth / track.scrollWidth : 1;
-    thumb.style.width = `${Math.max(ratio * 100, 8)}%`;
-    const range = bar.clientWidth - thumb.offsetWidth;
-    thumb.style.transform = `translateX(${m > 0 ? (track.scrollLeft / m) * range : 0}px)`;
+    const r = visibleRatio();
+    const p = m > 0 ? track.scrollLeft / m : 1;
+    thumb.style.width = `${(r + p * (1 - r)) * 100}%`;
   };
   track.addEventListener('scroll', sync, { passive: true });
   new ResizeObserver(sync).observe(track);
   sync();
+
+  /* seta: avança quase uma tela por clique; no fim, volta ao começo */
+  const next = carousel.querySelector('[data-next]');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  next?.addEventListener('click', () => {
+    if (track.scrollLeft >= maxScroll() - 4) {
+      track.scrollTo({ left: 0, behavior: reduce ? 'auto' : 'smooth' });
+    } else {
+      track.scrollBy({ left: Math.min(track.clientWidth * 0.8, 640), behavior: reduce ? 'auto' : 'smooth' });
+    }
+  });
 
   /* drag-to-scroll no trilho (só mouse; touch já arrasta nativo) */
   let dragging = false, moved = false, startX = 0, startLeft = 0;
@@ -114,12 +125,13 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
     if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
   }, true);
 
-  /* barra: clique salta para o ponto, arrasto acompanha o ponteiro */
+  /* barra: clique salta para o ponto, arrasto acompanha o ponteiro
+     (mapeia a ponta do preenchimento para a posição de rolagem) */
   const scrollToPointer = (e) => {
     const rect = bar.getBoundingClientRect();
-    const range = rect.width - thumb.offsetWidth;
-    if (range <= 0) return;
-    const p = (e.clientX - rect.left - thumb.offsetWidth / 2) / range;
+    const r = visibleRatio();
+    if (r >= 1) return;
+    const p = ((e.clientX - rect.left) / rect.width - r) / (1 - r);
     track.scrollLeft = Math.min(Math.max(p, 0), 1) * maxScroll();
   };
   bar.addEventListener('pointerdown', (e) => {
