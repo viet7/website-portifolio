@@ -1,6 +1,10 @@
 /* Estevão Souza · portfólio audiovisual
    Motion contido: IntersectionObserver para nav e reveals (sem scroll listeners). */
 
+/* Marca que o JS rodou: o CSS só esconde os .reveal sob html.js,
+   então sem JS a página inteira continua visível */
+document.documentElement.classList.add('js');
+
 /* ---- Anos de estrada (calculado, nunca fica desatualizado) ---- */
 const yearsEl = document.getElementById('yearsActive');
 if (yearsEl) yearsEl.textContent = String(new Date().getFullYear() - 2018);
@@ -249,7 +253,7 @@ document.querySelectorAll('[data-full]').forEach((el) => {
 document.querySelectorAll('[data-gallery]').forEach((el) => {
   const set = galleries[el.dataset.gallery];
   if (!set) return;
-  const count = el.querySelector('.serie__count');
+  const count = el.closest('.serie')?.querySelector('.serie__count'); // meta fica fora do botão
   if (count) count.textContent = `${set.length} fotos`;
   el.addEventListener('click', () => openLightbox(set, 0));
 });

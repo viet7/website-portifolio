@@ -123,15 +123,32 @@ ul { list-style: none; padding: 0; }
 .link-arrow::after { content: "\2192"; transition: transform .25s var(--ease); }
 .link-arrow:hover::after { transform: translateX(5px); }
 
-/* ---- Reveal motion ---- */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+/* ---- Reveal motion ----
+   Escondido só quando o JS marcou html.js (1ª linha do script.js): sem JS,
+   tudo fica visível. :where() zera a especificidade para o override de
+   prefers-reduced-motion no fim do arquivo continuar ganhando. */
+:where(html.js) .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
 .reveal.is-in { opacity: 1; transform: none; }
+
+/* ---- Botão-mídia dos cards (Trabalhos, Coleções) ----
+   O <button> envolve só a imagem — o <h3> fica fora, mantendo a semântica
+   de heading (filhos de button viram apresentacionais para AT). O ::after
+   estica a área de clique pelo card inteiro (.work/.serie é o ancestral
+   posicionado), então o título continua clicável como antes. */
+.card-btn {
+  display: block; width: 100%;
+  padding: 0; margin: 0; border: 0;
+  background: none; font: inherit; color: inherit; text-align: left;
+  cursor: pointer;
+}
+.card-btn::after { content: ""; position: absolute; inset: 0; }
 
 /* ---- Assinatura: cantos de mira (viewfinder) ----
    Toda mídia clicável do site (Trabalhos, Séries, Frames) recebe o mesmo
    gesto: cantos de foco de câmera que se fecham no hover/foco. Também
    serve de indicador de foco de teclado, mais expressivo que um outline genérico. */
 .work__img, .serie__img, .frame__img {
+  display: block; /* são <span> dentro do botão (conteúdo phrasing válido) */
   position: relative;
 }
 .work__img::after, .serie__img::after, .frame__img::after {
@@ -151,8 +168,10 @@ ul { list-style: none; padding: 0; }
     linear-gradient(var(--accent), var(--accent)) bottom right   / 18px 2px no-repeat,
     linear-gradient(var(--accent), var(--accent)) bottom right   / 2px 18px no-repeat;
 }
-.work:hover .work__img::after, .work:focus-visible .work__img::after,
-.serie:hover .serie__img::after, .serie:focus-visible .serie__img::after,
+/* .work/.serie são <div> com o botão dentro: o foco de teclado vem do
+   .card-btn (via :has); .frame continua sendo o próprio botão */
+.work:hover .work__img::after, .work:has(.card-btn:focus-visible) .work__img::after,
+.serie:hover .serie__img::after, .serie:has(.card-btn:focus-visible) .serie__img::after,
 .frame:hover .frame__img::after, .frame:focus-visible .frame__img::after {
   opacity: 1; transform: scale(1);
 }
@@ -170,8 +189,8 @@ ul { list-style: none; padding: 0; }
   border: 0;
   position: relative;
 }
-.work:hover, .work:focus-visible,
-.serie:hover, .serie:focus-visible,
+.work:hover, .work:has(.card-btn:focus-visible),
+.serie:hover, .serie:has(.card-btn:focus-visible),
 .frame:hover, .frame:focus-visible { --frame: var(--line-hi); }
 
 .work::before, .serie::before, .frame::before {

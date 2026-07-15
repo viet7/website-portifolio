@@ -14,6 +14,10 @@
   <link rel="canonical" href="https://website-portifolio-sigma.vercel.app/" />
   <meta name="theme-color" content="#1c1915" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%231c1915'/%3E%3Crect x='9' y='9' width='6' height='6' fill='%23e0a531'/%3E%3C/svg%3E" />
+  <!-- preload das 2 fontes acima da dobra (crossorigin é obrigatório para
+       fontes, mesmo same-origin, senão o preload é baixado duas vezes) -->
+  <link rel="preload" href="fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/manrope-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -116,45 +120,58 @@
       </div>
 
       <div class="works__grid">
-        <button class="work work--wide reveal" type="button" data-full="https://picsum.photos/seed/litoral-film/1920/1280" data-cap="Litoral · Curta-metragem, Bahia 2025">
-          <div class="work__img"><img loading="lazy" src="https://picsum.photos/seed/litoral-film/1400/900" alt="Still do curta-metragem Litoral" /><video class="card-vid" data-src="https://res.cloudinary.com/demo/video/upload/elephants.mp4" muted loop playsinline preload="none"></video></div>
+        <!-- card = <div>; o <button> fica só na mídia (h3 fora preserva a
+             semântica de heading) e o ::after do .card-btn estica a área de
+             clique pelo card inteiro, título incluído -->
+        <div class="work work--wide reveal">
+          <button class="card-btn" type="button" data-full="https://picsum.photos/seed/litoral-film/1920/1280" data-cap="Litoral · Curta-metragem, Bahia 2025">
+            <span class="work__img"><img loading="lazy" src="https://picsum.photos/seed/litoral-film/1400/900" alt="Still do curta-metragem Litoral" /><video class="card-vid" data-src="https://res.cloudinary.com/demo/video/upload/elephants.mp4" muted loop playsinline preload="none"></video></span>
+          </button>
           <div class="work__meta">
             <h3 class="work__title">Litoral</h3>
             <span class="work__tag">Curta-metragem, Bahia 2025</span>
           </div>
-        </button>
+        </div>
 
-        <button class="work work--tall reveal" type="button" data-full="https://picsum.photos/seed/mare-alta-clip/1280/1800" data-cap="Maré Alta · Videoclipe, Recife 2025">
-          <div class="work__img"><img loading="lazy" src="https://picsum.photos/seed/mare-alta-clip/900/1300" alt="Frame do videoclipe Maré Alta" /><video class="card-vid" data-src="https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4" muted loop playsinline preload="none"></video></div>
+        <div class="work work--tall reveal">
+          <button class="card-btn" type="button" data-full="https://picsum.photos/seed/mare-alta-clip/1280/1800" data-cap="Maré Alta · Videoclipe, Recife 2025">
+            <span class="work__img"><img loading="lazy" src="https://picsum.photos/seed/mare-alta-clip/900/1300" alt="Frame do videoclipe Maré Alta" /><video class="card-vid" data-src="https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4" muted loop playsinline preload="none"></video></span>
+          </button>
           <div class="work__meta">
             <h3 class="work__title">Maré Alta</h3>
             <span class="work__tag">Videoclipe, Recife 2025</span>
           </div>
-        </button>
+        </div>
 
-        <button class="work reveal" type="button" data-full="https://picsum.photos/seed/concreto-doc/1600/1600" data-cap="Concreto · Documental, São Paulo 2024">
-          <div class="work__img"><img loading="lazy" src="https://picsum.photos/seed/concreto-doc/900/900" alt="Cena do documental Concreto" /><video class="card-vid" data-src="https://res.cloudinary.com/demo/video/upload/dog.mp4" muted loop playsinline preload="none"></video></div>
+        <div class="work reveal">
+          <button class="card-btn" type="button" data-full="https://picsum.photos/seed/concreto-doc/1600/1600" data-cap="Concreto · Documental, São Paulo 2024">
+            <span class="work__img"><img loading="lazy" src="https://picsum.photos/seed/concreto-doc/900/900" alt="Cena do documental Concreto" /><video class="card-vid" data-src="https://res.cloudinary.com/demo/video/upload/dog.mp4" muted loop playsinline preload="none"></video></span>
+          </button>
           <div class="work__meta">
             <h3 class="work__title">Concreto</h3>
             <span class="work__tag">Documental, São Paulo 2024</span>
           </div>
-        </button>
+        </div>
 
-        <button class="work reveal" type="button" data-full="https://picsum.photos/seed/primeira-luz-ad/1600/1600" data-cap="Primeira Luz · Registro de show, Rio 2024">
-          <div class="work__img"><img loading="lazy" src="https://picsum.photos/seed/primeira-luz-ad/900/900" alt="Frame do registro de show Primeira Luz" /><video class="card-vid" data-src="https://videos.pexels.com/video-files/1093662/1093662-hd_1920_1080_30fps.mp4" muted loop playsinline preload="none"></video></div>
+        <div class="work reveal">
+          <button class="card-btn" type="button" data-full="https://picsum.photos/seed/primeira-luz-ad/1600/1600" data-cap="Primeira Luz · Registro de show, Rio 2024">
+            <span class="work__img"><img loading="lazy" src="https://picsum.photos/seed/primeira-luz-ad/900/900" alt="Frame do registro de show Primeira Luz" /><video class="card-vid" data-src="https://videos.pexels.com/video-files/1093662/1093662-hd_1920_1080_30fps.mp4" muted loop playsinline preload="none"></video></span>
+          </button>
           <div class="work__meta">
             <h3 class="work__title">Primeira Luz</h3>
             <span class="work__tag">Registro de show, Rio 2024</span>
           </div>
-        </button>
+        </div>
 
-        <button class="work work--full reveal" type="button" data-full="https://picsum.photos/seed/ruido-branco-mv/1920/900" data-cap="Ruído Branco · Videoclipe, Lisboa 2023">
-          <div class="work__img"><img loading="lazy" src="https://picsum.photos/seed/ruido-branco-mv/1600/720" alt="Still do videoclipe Ruído Branco" /><video class="card-vid" data-src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4" muted loop playsinline preload="none"></video></div>
+        <div class="work work--full reveal">
+          <button class="card-btn" type="button" data-full="https://picsum.photos/seed/ruido-branco-mv/1920/900" data-cap="Ruído Branco · Videoclipe, Lisboa 2023">
+            <span class="work__img"><img loading="lazy" src="https://picsum.photos/seed/ruido-branco-mv/1600/720" alt="Still do videoclipe Ruído Branco" /><video class="card-vid" data-src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4" muted loop playsinline preload="none"></video></span>
+          </button>
           <div class="work__meta">
             <h3 class="work__title">Ruído Branco</h3>
             <span class="work__tag">Videoclipe, Lisboa 2023</span>
           </div>
-        </button>
+        </div>
       </div>
     </section>
 
@@ -168,34 +185,48 @@
       </div>
 
       <div class="series__track">
-        <button class="serie reveal" type="button" data-gallery="grutas">
-          <div class="serie__img"><img loading="lazy" src="images/web/gruta-maquine-01-t.jpg" alt="Coleção Grutas" /></div>
+        <div class="serie reveal">
+          <button class="card-btn" type="button" data-gallery="grutas">
+            <span class="serie__img"><img loading="lazy" src="images/web/gruta-maquine-01-t.jpg" alt="Coleção Grutas" /></span>
+          </button>
           <div class="serie__meta"><h3 class="serie__title">Grutas</h3><span class="serie__count">9 fotos</span></div>
-        </button>
-        <button class="serie reveal" type="button" data-gallery="montanhas">
-          <div class="serie__img"><img loading="lazy" src="images/web/insbruck-pico-t.jpg" alt="Coleção Montanhas" /></div>
+        </div>
+        <div class="serie reveal">
+          <button class="card-btn" type="button" data-gallery="montanhas">
+            <span class="serie__img"><img loading="lazy" src="images/web/insbruck-pico-t.jpg" alt="Coleção Montanhas" /></span>
+          </button>
           <div class="serie__meta"><h3 class="serie__title">Montanhas</h3><span class="serie__count">11 fotos</span></div>
-        </button>
-        <button class="serie reveal" type="button" data-gallery="fortezza">
-          <div class="serie__img"><img loading="lazy" src="images/web/fortezza-09-t.jpg" alt="Coleção Forte di Fortezza" /></div>
+        </div>
+        <div class="serie reveal">
+          <button class="card-btn" type="button" data-gallery="fortezza">
+            <span class="serie__img"><img loading="lazy" src="images/web/fortezza-09-t.jpg" alt="Coleção Forte di Fortezza" /></span>
+          </button>
           <div class="serie__meta"><h3 class="serie__title">Forte di Fortezza</h3><span class="serie__count">25 fotos</span></div>
-        </button>
-        <button class="serie reveal" type="button" data-gallery="insbruck">
-          <div class="serie__img"><img loading="lazy" src="images/web/insbruck-06-t.jpg" alt="Coleção Innsbruck" /></div>
+        </div>
+        <div class="serie reveal">
+          <button class="card-btn" type="button" data-gallery="insbruck">
+            <span class="serie__img"><img loading="lazy" src="images/web/insbruck-06-t.jpg" alt="Coleção Innsbruck" /></span>
+          </button>
           <div class="serie__meta"><h3 class="serie__title">Innsbruck</h3><span class="serie__count">11 fotos</span></div>
-        </button>
-        <button class="serie reveal" type="button" data-gallery="milao">
-          <div class="serie__img"><img loading="lazy" src="images/web/milao-05-t.jpg" alt="Coleção Milão" /></div>
+        </div>
+        <div class="serie reveal">
+          <button class="card-btn" type="button" data-gallery="milao">
+            <span class="serie__img"><img loading="lazy" src="images/web/milao-05-t.jpg" alt="Coleção Milão" /></span>
+          </button>
           <div class="serie__meta"><h3 class="serie__title">Milão</h3><span class="serie__count">13 fotos</span></div>
-        </button>
-        <button class="serie reveal" type="button" data-gallery="munique">
-          <div class="serie__img"><img loading="lazy" src="images/web/munique-02-t.jpg" alt="Coleção Munique" /></div>
+        </div>
+        <div class="serie reveal">
+          <button class="card-btn" type="button" data-gallery="munique">
+            <span class="serie__img"><img loading="lazy" src="images/web/munique-02-t.jpg" alt="Coleção Munique" /></span>
+          </button>
           <div class="serie__meta"><h3 class="serie__title">Munique</h3><span class="serie__count">22 fotos</span></div>
-        </button>
-        <button class="serie reveal" type="button" data-gallery="veneza">
-          <div class="serie__img"><img loading="lazy" src="images/web/veneza-13-t.jpg" alt="Coleção Veneza" /></div>
+        </div>
+        <div class="serie reveal">
+          <button class="card-btn" type="button" data-gallery="veneza">
+            <span class="serie__img"><img loading="lazy" src="images/web/veneza-13-t.jpg" alt="Coleção Veneza" /></span>
+          </button>
           <div class="serie__meta"><h3 class="serie__title">Veneza</h3><span class="serie__count">14 fotos</span></div>
-        </button>
+        </div>
       </div>
 
       <!-- controles: barra de progresso arrastável + seta (ref. Vimeo/EFA);
@@ -219,28 +250,28 @@
       </div>
       <div class="frames__grid">
         <button class="frame reveal" type="button" data-full="images/web/gruta-lapinha-01.jpg" data-cap="Gruta da Lapinha, Serra do Cipó">
-          <div class="frame__img"><img loading="lazy" src="images/web/gruta-lapinha-01-t.jpg" alt="Formação rochosa iluminada na Gruta da Lapinha" /></div>
+          <span class="frame__img"><img loading="lazy" src="images/web/gruta-lapinha-01-t.jpg" alt="Formação rochosa iluminada na Gruta da Lapinha" /></span>
         </button>
         <button class="frame reveal" type="button" data-full="images/web/munique-02.jpg" data-cap="Munique">
-          <div class="frame__img"><img loading="lazy" src="images/web/munique-02-t.jpg" alt="Figura solitária em corredor de concreto, Munique" /></div>
+          <span class="frame__img"><img loading="lazy" src="images/web/munique-02-t.jpg" alt="Figura solitária em corredor de concreto, Munique" /></span>
         </button>
         <button class="frame reveal" type="button" data-full="images/web/itatiaia-arco.jpg" data-cap="Parque Nacional do Itatiaia">
-          <div class="frame__img"><img loading="lazy" src="images/web/itatiaia-arco-t.jpg" alt="Arco natural de pedra no Itatiaia" /></div>
+          <span class="frame__img"><img loading="lazy" src="images/web/itatiaia-arco-t.jpg" alt="Arco natural de pedra no Itatiaia" /></span>
         </button>
         <button class="frame reveal" type="button" data-full="images/web/munique-06.jpg" data-cap="Munique">
-          <div class="frame__img"><img loading="lazy" src="images/web/munique-06-t.jpg" alt="Plataforma de metrô vazia em Munique" /></div>
+          <span class="frame__img"><img loading="lazy" src="images/web/munique-06-t.jpg" alt="Plataforma de metrô vazia em Munique" /></span>
         </button>
         <button class="frame reveal" type="button" data-full="images/web/munique-15.jpg" data-cap="Munique">
-          <div class="frame__img"><img loading="lazy" src="images/web/munique-15-t.jpg" alt="Arco coberto de hera vermelha, Munique" /></div>
+          <span class="frame__img"><img loading="lazy" src="images/web/munique-15-t.jpg" alt="Arco coberto de hera vermelha, Munique" /></span>
         </button>
         <button class="frame reveal" type="button" data-full="images/web/gruta-rei-do-mato-01.jpg" data-cap="Gruta Rei do Mato, Sete Lagoas">
-          <div class="frame__img"><img loading="lazy" src="images/web/gruta-rei-do-mato-01-t.jpg" alt="Colunas de pedra na Gruta Rei do Mato" /></div>
+          <span class="frame__img"><img loading="lazy" src="images/web/gruta-rei-do-mato-01-t.jpg" alt="Colunas de pedra na Gruta Rei do Mato" /></span>
         </button>
         <button class="frame reveal" type="button" data-full="images/web/milao-02.jpg" data-cap="Duomo di Milano">
-          <div class="frame__img"><img loading="lazy" src="images/web/milao-02-t.jpg" alt="Fachada do Duomo de Milão na luz dourada" /></div>
+          <span class="frame__img"><img loading="lazy" src="images/web/milao-02-t.jpg" alt="Fachada do Duomo de Milão na luz dourada" /></span>
         </button>
         <button class="frame reveal" type="button" data-full="images/web/veneza-13.jpg" data-cap="Veneza">
-          <div class="frame__img"><img loading="lazy" src="images/web/veneza-13-t.jpg" alt="Canal de Veneza ao entardecer" /></div>
+          <span class="frame__img"><img loading="lazy" src="images/web/veneza-13-t.jpg" alt="Canal de Veneza ao entardecer" /></span>
         </button>
       </div>
     </section>
