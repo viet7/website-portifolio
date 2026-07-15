@@ -371,7 +371,7 @@ ul { list-style: none; padding: 0; }
   display: flex; align-items: flex-end; justify-content: space-between;
   gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.2rem;
 }
-.series__note { color: var(--text-mute); margin-top: .6rem; max-width: 40ch; }
+.series__note { color: var(--text-mute); margin-top: .6rem; max-width: 52ch; }
 .series__track {
   --sgap: clamp(1rem, 2vw, 1.5rem);
   display: flex; gap: var(--sgap);
